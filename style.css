@@ -247,6 +247,22 @@ select:focus{
     font-weight:600;
 }
 
+/* ---------- OPTIONAL SUBJECT UI ---------- */
+
+.optional-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.optional-toggle{
+    margin-bottom:2px;
+}
+
+.grade-select.hidden{
+    display:none;
+}
+
 /* ---------- ERROR ---------- */
 
 .error-box{
