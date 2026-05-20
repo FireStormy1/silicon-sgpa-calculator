@@ -1,28 +1,3 @@
-// ---------- GRADE POINTS ----------
-
-const gradePoints = {
-    O: 10,
-    E: 9,
-    A: 8,
-    B: 7,
-    C: 6,
-    D: 5,
-    U: 0
-};
-
-// ---------- GRADE OPTIONS ----------
-
-const gradeOptions = [
-    "",
-    "O",
-    "E",
-    "A",
-    "B",
-    "C",
-    "D",
-    "U"
-];
-
 // ---------- SUBJECT DATA ----------
 
 const semesterData = {
@@ -289,5 +264,165 @@ const semesterData = {
                 credit: 2
             }
         ]
+    },
+
+    // ======================
+    // CSE - Semester 5
+    // ======================
+
+    "cse-5": {
+        label: "CSE • Semester 5",
+
+        subjects: [
+
+            {
+                name: "Computer Networks",
+                credit: 3
+            },
+
+            {
+                name: "Machine Learning",
+                credit: 4
+            },
+
+            {
+                name: "Software Engineering",
+                credit: 3
+            },
+
+            {
+                name:
+                "Formal Languages & Automata Theory",
+                credit: 3
+            },
+
+            {
+                name:
+                "Program Elective - II",
+                credit: 3
+            },
+
+            {
+                name:
+                "Program Elective - III",
+                credit: 3
+            },
+
+            {
+                name:
+                "Honours / Minor - II (Optional)",
+                credit: 3,
+                optional: true
+            },
+
+            {
+                name:
+                "Computer Networks Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Machine Learning Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Software Engineering Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Soft Skills for Professionals",
+                credit: 1
+            },
+
+            {
+                name:
+                "Summer Internship - II",
+                credit: 1
+            }
+        ]
+    },
+
+    // ======================
+    // CSE - Semester 6
+    // ======================
+
+    "cse-6": {
+        label: "CSE • Semester 6",
+
+        subjects: [
+
+            {
+                name:
+                "Internet of Things",
+                credit: 3
+            },
+
+            {
+                name:
+                "Soft Computing",
+                credit: 3
+            },
+
+            {
+                name:
+                "Compiler Design",
+                credit: 3
+            },
+
+            {
+                name:
+                "Program Elective - IV",
+                credit: 3
+            },
+
+            {
+                name:
+                "Program Elective - V",
+                credit: 3
+            },
+
+            {
+                name:
+                "Program Elective - VI",
+                credit: 3
+            },
+
+            {
+                name:
+                "Honours / Minor - III",
+                credit: 4,
+                optional: true
+            },
+
+            {
+                name:
+                "Internet of Things Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Soft Computing Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Emerging Technologies Lab / Entrepreneurship & Innovation",
+                credit: 2
+            },
+
+            {
+                name:
+                "Technical & Research Writing",
+                credit: 1
+            }
+        ]
     }
 };
+
