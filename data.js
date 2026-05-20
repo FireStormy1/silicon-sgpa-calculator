@@ -7,7 +7,7 @@ const gradePoints = {
     B: 7,
     C: 6,
     D: 5,
-    F: 0
+    U: 0
 };
 
 // ---------- GRADE OPTIONS ----------
@@ -20,7 +20,7 @@ const gradeOptions = [
     "B",
     "C",
     "D",
-    "F"
+    "U"
 ];
 
 // ---------- SUBJECT DATA ----------
@@ -135,6 +135,158 @@ const semesterData = {
             {
                 name: "Engineering Graphics / Workbench Practices",
                 credit: 1
+            }
+        ]
+    },
+
+
+    // ======================
+    // CSE - Semester 3
+    // ======================
+
+    "cse-3": {
+        label: "CSE • Semester 3",
+
+        subjects: [
+
+            {
+                name: "Discrete Mathematics",
+                credit: 3
+            },
+
+            {
+                name: "OOP Using Java",
+                credit: 3
+            },
+
+            {
+                name:
+                "Management & Economics for Engineers / Biology for Engineers",
+                credit: 3
+            },
+
+            {
+                name:
+                "Design & Analysis of Algorithms",
+                credit: 4
+            },
+
+            {
+                name: "Operating Systems",
+                credit: 3
+            },
+
+            {
+                name: "Digital Electronics",
+                credit: 3
+            },
+
+            {
+                name:
+                "OOP Using Java Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Design & Analysis of Algorithms Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Operating Systems Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Digital Electronics Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Summer Internship 1",
+                credit: 1
+            }
+        ]
+    },
+
+    // ======================
+    // CSE - Semester 4
+    // ======================
+
+    "cse-4": {
+        label: "CSE • Semester 4",
+
+        subjects: [
+
+            {
+                name:
+                "Optimization Techniques",
+                credit: 3
+            },
+
+            {
+                name:
+                "Programming in Python",
+                credit: 3
+            },
+
+            {
+                name:
+                "Management & Economics for Engineers / Biology for Engineers",
+                credit: 3
+            },
+
+            {
+                name:
+                "Computer Organization & Architecture",
+                credit: 3
+            },
+
+            {
+                name:
+                "Database Management Systems",
+                credit: 4
+            },
+
+            {
+                name:
+                "Program Elective - I",
+                credit: 3
+            },
+
+            {
+                name:
+                "Honors / Minor - I (Optional)",
+                credit: 3,
+                optional: true
+            },
+
+            {
+                name:
+                "Programming in Python Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Computer Organization & Architecture Lab",
+                credit: 1
+            },
+
+            {
+                name:
+                "Database Management Systems Lab",
+                credit: 2
+            },
+
+            {
+                name:
+                "Internet & Web Technology Lab",
+                credit: 2
             }
         ]
     }
