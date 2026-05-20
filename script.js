@@ -284,19 +284,27 @@ function getMotivation(sgpa) {
 
 function resetAll() {
 
+    // Reset dropdowns
     branchSelect.value = "";
     semesterSelect.value = "";
 
+    // Reset state
     currentSemesterKey = null;
 
+    // Clear subjects
     subjectsContainer.innerHTML = "";
 
+    // Hide all sections
     hideEverything();
     hideError();
 
+    // Hide result
     resultCard.classList.add(
         "hidden"
     );
+
+    // Force UI refresh
+    loadSemesterData();
 }
 
 // ---------- ERROR ----------
