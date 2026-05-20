@@ -49,11 +49,23 @@ function loadSemesterData() {
     if (!branch || !semester) return;
 
     // Only support 1st year sem1 & sem2
-    const key =
+    let key = null;
+
+    // 1st Year
+    if (
         branch === "1yr" &&
         (semester === "1" || semester === "2")
-            ? `1yr-${semester}`
-            : null;
+    ) {
+        key = `1yr-${semester}`;
+    }
+
+    // CSE
+    if (
+        branch === "cse" &&
+        (semester === "3" || semester === "4")
+    ) {
+        key = `cse-${semester}`;
+    }
 
     // Unsupported
     if (!key) {
