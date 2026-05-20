@@ -183,8 +183,8 @@ function calculateSGPA() {
 
     // Validation
     for (let i = 0;
-         i < gradeSelects.length;
-         i++) {
+        i < gradeSelects.length;
+        i++) {
 
         const grade =
             gradeSelects[i].value;
@@ -284,24 +284,23 @@ function getMotivation(sgpa) {
 
 function resetAll() {
 
-    // Reset dropdowns completely
+    // Reset dropdowns visually
     branchSelect.selectedIndex = 0;
     semesterSelect.selectedIndex = 0;
 
-    // Reset semester key
+    // Reset internal state
     currentSemesterKey = null;
 
-    // Clear subjects
-    subjectsContainer.innerHTML = "";
-
-    // Clear result text
-    sgpaValue.textContent = "0.00";
-    motivationTitle.textContent = "";
-    motivationMessage.textContent = "";
+    // Clear error
+    hideError();
 
     // Hide everything
     hideEverything();
-    hideError();
+
+    // Clear SGPA card content
+    sgpaValue.textContent = "";
+    motivationTitle.textContent = "";
+    motivationMessage.textContent = "";
 }
 
 // ---------- ERROR ----------
@@ -327,23 +326,21 @@ function hideError() {
 
 function hideEverything() {
 
-    comingSoon.classList.add(
-        "hidden"
-    );
+    comingSoon.classList.add("hidden");
 
-    semesterInfo.classList.add(
-        "hidden"
-    );
+    semesterInfo.classList.add("hidden");
 
-    subjectsCard.classList.add(
-        "hidden"
-    );
+    subjectsCard.classList.add("hidden");
 
-    buttonsSection.classList.add(
-        "hidden"
-    );
+    buttonsSection.classList.add("hidden");
 
-    resultCard.classList.add(
-        "hidden"
-    );
+    resultCard.classList.add("hidden");
+
+    // Clear semester info text
+    semesterTitle.textContent = "";
+    subjectCount.textContent = "";
+    totalCredits.textContent = "";
+
+    // Clear subjects
+    subjectsContainer.innerHTML = "";
 }
