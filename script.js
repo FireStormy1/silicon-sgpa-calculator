@@ -11,31 +11,89 @@ const subjectCount = document.getElementById("subjectCount");
 const totalCredits = document.getElementById("totalCredits");
 
 const subjectsCard = document.getElementById("subjectsCard");
-const subjectsContainer = document.getElementById("subjectsContainer");
+const subjectsContainer =
+    document.getElementById(
+        "subjectsContainer"
+    );
 
-const buttonsSection = document.getElementById("buttonsSection");
+const buttonsSection =
+    document.getElementById(
+        "buttonsSection"
+    );
 
-const calculateBtn = document.getElementById("calculateBtn");
-const resetBtn = document.getElementById("resetBtn");
+const calculateBtn =
+    document.getElementById(
+        "calculateBtn"
+    );
 
-const errorMessage = document.getElementById("errorMessage");
+const resetBtn =
+    document.getElementById(
+        "resetBtn"
+    );
 
-const resultCard = document.getElementById("resultCard");
-const sgpaValue = document.getElementById("sgpaValue");
-const motivationTitle = document.getElementById("motivationTitle");
-const motivationMessage = document.getElementById("motivationMessage");
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+const resultCard =
+    document.getElementById(
+        "resultCard"
+    );
+
+const sgpaValue =
+    document.getElementById(
+        "sgpaValue"
+    );
+
+const motivationTitle =
+    document.getElementById(
+        "motivationTitle"
+    );
+
+const motivationMessage =
+    document.getElementById(
+        "motivationMessage"
+    );
+
+// ---------- GRADE POINTS ----------
+
+const gradePoints = {
+    O: 10,
+    E: 9,
+    A: 8,
+    B: 7,
+    C: 6,
+    D: 5,
+    U: 0
+};
 
 // ---------- GLOBAL STATE ----------
 
-let currentSemesterKey = null;
+let currentSemesterKey =
+    null;
 
 // ---------- EVENT LISTENERS ----------
 
-branchSelect.addEventListener("change", loadSemesterData);
-semesterSelect.addEventListener("change", loadSemesterData);
+branchSelect.addEventListener(
+    "change",
+    loadSemesterData
+);
 
-calculateBtn.addEventListener("click", calculateSGPA);
-resetBtn.addEventListener("click", resetAll);
+semesterSelect.addEventListener(
+    "change",
+    loadSemesterData
+);
+
+calculateBtn.addEventListener(
+    "click",
+    calculateSGPA
+);
+
+resetBtn.addEventListener(
+    "click",
+    resetAll
+);
 
 // ---------- LOAD SEMESTER ----------
 
@@ -43,76 +101,111 @@ function loadSemesterData() {
 
     hideEverything();
 
-    const branch = branchSelect.value;
-    const semester = semesterSelect.value;
+    const branch =
+        branchSelect.value;
 
-    if (!branch || !semester) return;
+    const semester =
+        semesterSelect.value;
 
-    // Only support 1st year sem1 & sem2
+    if (
+        !branch ||
+        !semester
+    ) {
+        return;
+    }
+
     let key = null;
 
-    // 1st Year
+    // Global first year
     if (
-        branch === "1yr" &&
-        (semester === "1" || semester === "2")
+        semester === "1" ||
+        semester === "2"
     ) {
         key = `1yr-${semester}`;
     }
 
-    // CSE
-    if (
+    // CSE semesters
+    else if (
         branch === "cse" &&
-        (semester === "3" || semester === "4")
+        (
+            semester === "3" ||
+            semester === "4" ||
+            semester === "5" ||
+            semester === "6"
+        )
     ) {
         key = `cse-${semester}`;
     }
 
-    // Unsupported
     if (!key) {
-        comingSoon.classList.remove("hidden");
+
+        comingSoon.classList.remove(
+            "hidden"
+        );
+
         return;
     }
 
     currentSemesterKey = key;
 
-    const data = semesterData[key];
+    const data =
+        semesterData[key];
 
     renderSemesterInfo(data);
     renderSubjects(data);
 
-    semesterInfo.classList.remove("hidden");
-    subjectsCard.classList.remove("hidden");
-    buttonsSection.classList.remove("hidden");
+    semesterInfo.classList.remove(
+        "hidden"
+    );
+
+    subjectsCard.classList.remove(
+        "hidden"
+    );
+
+    buttonsSection.classList.remove(
+        "hidden"
+    );
 }
 
 // ---------- RENDER INFO ----------
 
 function renderSemesterInfo(data) {
 
-    semesterTitle.textContent = data.label;
+    semesterTitle.textContent =
+        data.label;
 
     subjectCount.textContent =
         `${data.subjects.length} Subjects`;
 
-    const credits = data.subjects.reduce(
-        (sum, subject) =>
-            sum + subject.credit,
-        0
-    );
+    const credits =
+        data.subjects.reduce(
+            (sum, subject) =>
+                sum +
+                subject.credit,
+            0
+        );
 
-    totalCredits.textContent = credits;
+    totalCredits.textContent =
+        credits;
 }
 
 // ---------- RENDER SUBJECTS ----------
 
 function renderSubjects(data) {
 
-    subjectsContainer.innerHTML = "";
+    subjectsContainer.innerHTML =
+        "";
 
-    data.subjects.forEach((subject, index) => {
+    data.subjects.forEach(
+        (subject, index) => {
 
-        const row = document.createElement("div");
-        row.className = "subject-row";
+        const row =
+            document.createElement(
+                "div"
+            );
+
+        row.className =
+            "subject-row";
 
         row.innerHTML = `
             <div class="subject-info">
@@ -124,123 +217,274 @@ function renderSubjects(data) {
                 ${subject.credit}
             </div>
 
-            <select class="grade-select"
-                    data-index="${index}">
+            <div class="optional-wrapper">
 
-                <option value="">
-                    Select Grade
-                </option>
+                ${
+                    subject.optional
+                    ?
+                    `
+                    <select
+                        class="optional-toggle"
+                    >
+                        <option value="no">
+                            Not Taken
+                        </option>
 
-                <option value="O">
-                    O — Outstanding
-                </option>
+                        <option value="yes">
+                            Taken
+                        </option>
+                    </select>
 
-                <option value="E">
-                    E — Excellent
-                </option>
+                    <select
+                        class="grade-select hidden"
+                        data-index="${index}"
+                    >
+                        ${gradeOptions()}
+                    </select>
+                    `
+                    :
+                    `
+                    <select
+                        class="grade-select"
+                        data-index="${index}"
+                    >
+                        ${gradeOptions()}
+                    </select>
+                    `
+                }
 
-                <option value="A">
-                    A — Very Good
-                </option>
-
-                <option value="B">
-                    B — Good
-                </option>
-
-                <option value="C">
-                    C — Average
-                </option>
-
-                <option value="D">
-                    D — Satisfactory
-                </option>
-
-                <option value="F">
-                    F — Fail
-                </option>
-            </select>
+            </div>
         `;
 
-        subjectsContainer.appendChild(row);
+        subjectsContainer.appendChild(
+            row
+        );
     });
 
-    // Live calculation
+    // Grade change
     const gradeSelects =
-        document.querySelectorAll(".grade-select");
+        document.querySelectorAll(
+            ".grade-select"
+        );
 
-    gradeSelects.forEach(select => {
+    gradeSelects.forEach(
+        select => {
+
         select.addEventListener(
             "change",
             calculateSGPA
         );
     });
+
+    // Optional toggle
+    const optionalToggles =
+        document.querySelectorAll(
+            ".optional-toggle"
+        );
+
+    optionalToggles.forEach(
+        toggle => {
+
+        toggle.addEventListener(
+            "change",
+            function () {
+
+                const parent =
+                    this.parentElement;
+
+                const gradeSelect =
+                    parent.querySelector(
+                        ".grade-select"
+                    );
+
+                if (
+                    this.value ===
+                    "yes"
+                ) {
+
+                    gradeSelect
+                    .classList
+                    .remove(
+                        "hidden"
+                    );
+                }
+                else {
+
+                    gradeSelect.value =
+                        "";
+
+                    gradeSelect
+                    .classList
+                    .add(
+                        "hidden"
+                    );
+
+                    calculateSGPA();
+                }
+            }
+        );
+    });
+}
+
+// ---------- GRADE OPTIONS ----------
+
+function gradeOptions() {
+
+    return `
+        <option value="">
+            Select Grade
+        </option>
+
+        <option value="O">
+            O — Outstanding
+        </option>
+
+        <option value="E">
+            E — Excellent
+        </option>
+
+        <option value="A">
+            A — Very Good
+        </option>
+
+        <option value="B">
+            B — Good
+        </option>
+
+        <option value="C">
+            C — Average
+        </option>
+
+        <option value="D">
+            D — Satisfactory
+        </option>
+
+        <option value="U">
+            U — Unsatisfactory
+        </option>
+    `;
 }
 
 // ---------- CALCULATE SGPA ----------
 
 function calculateSGPA() {
 
-    if (!currentSemesterKey) return;
+    if (
+        !currentSemesterKey
+    ) return;
 
     const data =
-        semesterData[currentSemesterKey];
+        semesterData[
+            currentSemesterKey
+        ];
 
     const gradeSelects =
         document.querySelectorAll(
             ".grade-select"
         );
 
+    const optionalToggles =
+        document.querySelectorAll(
+            ".optional-toggle"
+        );
+
     let weightedSum = 0;
     let creditSum = 0;
 
-    // Validation
-    for (let i = 0;
-        i < gradeSelects.length;
-        i++) {
+    for (
+        let i = 0;
+        i <
+        gradeSelects.length;
+        i++
+    ) {
 
         const grade =
-            gradeSelects[i].value;
+            gradeSelects[i]
+            .value;
 
-        if (!grade) {
+        const subject =
+            data.subjects[i];
 
-            showError(
-                "Please select grades for all subjects."
-            );
+        // Optional
+        if (
+            subject.optional
+        ) {
 
-            resultCard.classList.add(
-                "hidden"
-            );
+            const toggle =
+                optionalToggles[0];
 
-            return;
+            const taken =
+                toggle &&
+                toggle.value ===
+                "yes";
+
+            if (!taken) {
+                continue;
+            }
+
+            if (!grade) {
+
+                showError(
+                    "Please select grade for optional subject."
+                );
+
+                return;
+            }
         }
 
-        const credit =
-            data.subjects[i].credit;
+        // Compulsory
+        else {
+
+            if (!grade) {
+
+                showError(
+                    "Please select grades for all compulsory subjects."
+                );
+
+                resultCard
+                .classList
+                .add(
+                    "hidden"
+                );
+
+                return;
+            }
+        }
 
         weightedSum +=
-            credit *
-            gradePoints[grade];
+            subject.credit *
+            gradePoints[
+                grade
+            ];
 
-        creditSum += credit;
+        creditSum +=
+            subject.credit;
     }
 
     hideError();
 
     const sgpa =
-        (weightedSum / creditSum)
-        .toFixed(2);
+        (
+            weightedSum /
+            creditSum
+        ).toFixed(2);
 
-    showResult(Number(sgpa));
+    showResult(
+        Number(sgpa)
+    );
 }
 
 // ---------- SHOW RESULT ----------
 
 function showResult(sgpa) {
 
-    sgpaValue.textContent = sgpa;
+    sgpaValue.textContent =
+        sgpa;
 
     const motivation =
-        getMotivation(sgpa);
+        getMotivation(
+            sgpa
+        );
 
     motivationTitle.textContent =
         `${motivation.emoji} ${motivation.title}`;
@@ -255,30 +499,41 @@ function showResult(sgpa) {
 
 // ---------- MOTIVATION ----------
 
-function getMotivation(sgpa) {
+function getMotivation(
+    sgpa
+) {
 
-    if (sgpa >= 9) {
+    if (
+        sgpa >= 9
+    ) {
         return {
             emoji: "🎉",
-            title: "Excellent!",
+            title:
+                "Excellent!",
             message:
                 "Outstanding performance this semester."
         };
     }
 
-    if (sgpa >= 8) {
+    if (
+        sgpa >= 8
+    ) {
         return {
             emoji: "✨",
-            title: "Great Job!",
+            title:
+                "Great Job!",
             message:
                 "You're doing really well. Keep it up."
         };
     }
 
-    if (sgpa >= 7) {
+    if (
+        sgpa >= 7
+    ) {
         return {
             emoji: "👍",
-            title: "Good Work",
+            title:
+                "Good Work",
             message:
                 "Keep pushing higher. You have the potential."
         };
@@ -286,7 +541,8 @@ function getMotivation(sgpa) {
 
     return {
         emoji: "💪",
-        title: "Room to Grow",
+        title:
+            "Room to Grow",
         message:
             "Stay consistent. Every semester is a new start."
     };
@@ -296,23 +552,26 @@ function getMotivation(sgpa) {
 
 function resetAll() {
 
-    // Reset dropdowns visually
-    branchSelect.selectedIndex = 0;
-    semesterSelect.selectedIndex = 0;
+    branchSelect
+        .selectedIndex = 0;
 
-    // Reset internal state
-    currentSemesterKey = null;
+    semesterSelect
+        .selectedIndex = 0;
 
-    // Clear error
+    currentSemesterKey =
+        null;
+
     hideError();
-
-    // Hide everything
     hideEverything();
 
-    // Clear SGPA card content
-    sgpaValue.textContent = "";
-    motivationTitle.textContent = "";
-    motivationMessage.textContent = "";
+    sgpaValue.textContent =
+        "";
+
+    motivationTitle.textContent =
+        "";
+
+    motivationMessage.textContent =
+        "";
 }
 
 // ---------- ERROR ----------
@@ -338,21 +597,35 @@ function hideError() {
 
 function hideEverything() {
 
-    comingSoon.classList.add("hidden");
+    comingSoon.classList.add(
+        "hidden"
+    );
 
-    semesterInfo.classList.add("hidden");
+    semesterInfo.classList.add(
+        "hidden"
+    );
 
-    subjectsCard.classList.add("hidden");
+    subjectsCard.classList.add(
+        "hidden"
+    );
 
-    buttonsSection.classList.add("hidden");
+    buttonsSection.classList.add(
+        "hidden"
+    );
 
-    resultCard.classList.add("hidden");
+    resultCard.classList.add(
+        "hidden"
+    );
 
-    // Clear semester info text
-    semesterTitle.textContent = "";
-    subjectCount.textContent = "";
-    totalCredits.textContent = "";
+    semesterTitle.textContent =
+        "";
 
-    // Clear subjects
-    subjectsContainer.innerHTML = "";
+    subjectCount.textContent =
+        "";
+
+    totalCredits.textContent =
+        "";
+
+    subjectsContainer.innerHTML =
+        "";
 }
