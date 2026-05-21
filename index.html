@@ -1,253 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Silicon SGPA Calculator</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>
+        Silicon Academic Toolkit
+    </title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <link
+        rel="stylesheet"
+        href="style.css"
+    />
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- NAVBAR -->
 
-        <!-- Header -->
-        <header class="header">
-            <p class="university-name">Silicon University</p>
+    <nav class="navbar">
 
-            <h1>SGPA Calculator</h1>
+        <div class="nav-container">
 
-            <p class="subtitle">
-                Calculate your semester GPA quickly and accurately
-            </p>
-        </header>
-
-        <!-- Selection Section -->
-        <section class="selectors">
-
-            <div class="input-group">
-                <label>Branch</label>
-
-                <select id="branch">
-                    <option value="">Select Branch</option>
-
-                    <option value="cse">
-                        CSE
-                    </option>
-
-                    <option value="ece">
-                        ECE
-                    </option>
-
-                    <option value="eee">
-                        EEE
-                    </option>
-
-                    <option value="ei">
-                        EI
-                    </option>
-
-                    <option value="vlsi">
-                        VLSI
-                    </option>
-                </select>
+            <div class="brand">
+                Silicon Academic Toolkit
             </div>
 
-            <div class="input-group">
-                <label>Semester</label>
+            <div class="nav-links">
 
-                <select id="semester">
-                    <option value="">
-                        Select Semester
-                    </option>
+                <button
+                    class="nav-link active"
+                    data-section="home"
+                >
+                    Home
+                </button>
 
-                    <option value="1">
-                        Semester 1
-                    </option>
+                <button
+                    class="nav-link"
+                    data-section="sgpa"
+                >
+                    SGPA
+                </button>
 
-                    <option value="2">
-                        Semester 2
-                    </option>
+                <button
+                    class="nav-link"
+                    data-section="cgpa"
+                >
+                    CGPA
+                </button>
 
-                    <option value="3">
-                        Semester 3
-                    </option>
+                <button
+                    class="nav-link"
+                    data-section="about"
+                >
+                    About
+                </button>
 
-                    <option value="4">
-                        Semester 4
-                    </option>
-
-                    <option value="5">
-                        Semester 5
-                    </option>
-
-                    <option value="6">
-                        Semester 6
-                    </option>
-
-                    <option value="7">
-                        Semester 7
-                    </option>
-
-                    <option value="8">
-                        Semester 8
-                    </option>
-                </select>
             </div>
 
-        </section>
-
-        <!-- Coming Soon -->
-        <div id="comingSoon" class="coming-soon hidden">
-            <h3>🚧 Coming Soon</h3>
-
-            <p>
-                Support for this branch/semester
-                will be added soon.
-            </p>
         </div>
 
-        <!-- Semester Info -->
-        <section id="semesterInfo"
-                class="semester-card hidden">
+    </nav>
 
-            <div>
-                <h3 id="semesterTitle"></h3>
-                <p id="subjectCount"></p>
+    <main class="container">
+
+        <!-- HOME -->
+
+        <section
+            id="homeSection"
+            class="page-section"
+        >
+
+            <div class="hero-card">
+
+                <span class="hero-badge">
+                    Built for Silicon University Students
+                </span>
+
+                <h1>
+                    Silicon Academic Toolkit
+                </h1>
+
+                <p class="hero-text">
+
+                    Smart academic tools for
+                    Silicon University students.
+
+                    Calculate SGPA accurately,
+                    track academic performance,
+                    and manage semesters easily.
+
+                </p>
+
+                <button
+                    id="goToSgpa"
+                    class="primary-btn"
+                >
+                    Open SGPA Calculator
+                </button>
+
             </div>
 
-            <div class="credits-box">
-                <h2 id="totalCredits">20</h2>
-                <span>CREDITS</span>
-            </div>
         </section>
 
-        <!-- Subjects -->
-        <section id="subjectsCard"
-                class="subjects-card hidden">
+        <!-- SGPA -->
 
-            <div class="subjects-header">
-                <h3 id="subjectsHeading">
-                    Subjects
+        <section
+            id="sgpaSection"
+            class="page-section hidden"
+        >
+
+            <!-- Header -->
+
+            <div class="section-header">
+
+                <h1>
+                    SGPA Calculator
+                </h1>
+
+                <p>
+                    Calculate semester GPA
+                    quickly and accurately
+                </p>
+
+            </div>
+
+            <!-- Branch Selection -->
+
+            <div class="card">
+
+                <h3 class="card-title">
+                    Branch
                 </h3>
-            </div>
 
-            <div id="subjectsContainer">
-                <!-- JS injects subjects -->
-            </div>
-        </section>
+                <div
+                    id="branchContainer"
+                    class="chip-group"
+                >
 
-        <!-- Error -->
-        <div id="errorMessage"
-            class="error-box hidden">
-        </div>
+                    <button
+                        class="chip branch-chip"
+                        data-branch="cse"
+                    >
+                        CSE
+                    </button>
 
-        <!-- Buttons -->
-        <section id="buttonsSection"
-                class="buttons hidden">
+                    <button
+                        class="chip branch-chip"
+                        data-branch="ece"
+                    >
+                        ECE
+                    </button>
 
-            <button id="calculateBtn"
-                    class="primary-btn">
-                Calculate SGPA
-            </button>
+                    <button
+                        class="chip branch-chip"
+                        data-branch="eee"
+                    >
+                        EEE
+                    </button>
 
-            <button id="resetBtn"
-                    class="secondary-btn">
-                Reset
-            </button>
-        </section>
+                    <button
+                        class="chip branch-chip"
+                        data-branch="ei"
+                    >
+                        EI
+                    </button>
 
-        <!-- Result -->
-        <section id="resultCard"
-                class="result-card hidden">
+                    <button
+                        class="chip branch-chip"
+                        data-branch="vlsi"
+                    >
+                        VLSI
+                    </button>
 
-            <p class="result-label">
-                YOUR SGPA
-            </p>
-
-            <h2 id="sgpaValue">
-                0.00
-            </h2>
-
-            <div class="divider"></div>
-
-            <h3 id="motivationTitle"></h3>
-
-            <p id="motivationMessage"></p>
-        </section>
-
-        <!-- Grade Scale -->
-        <section class="grade-card">
-
-            <h3>Grade Scale</h3>
-
-            <div class="grade-grid">
-
-                <div class="grade-box">
-                    <span>O</span>
-                    <p>10 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>E</span>
-                    <p>9 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>A</span>
-                    <p>8 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>B</span>
-                    <p>7 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>C</span>
-                    <p>6 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>D</span>
-                    <p>5 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>U</span>
-                    <p>0 pts</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>X</span>
-                    <p>Debarred</p>
-                </div>
-
-                <div class="grade-box">
-                    <span>W</span>
-                    <p>Withheld</p>
                 </div>
 
             </div>
+
+            <!-- Semester -->
+
+            <div class="card">
+
+                <h3 class="card-title">
+                    Semester
+                </h3>
+
+                <div
+                    id="semesterContainer"
+                    class="chip-group"
+                >
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="1"
+                    >
+                        1
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="2"
+                    >
+                        2
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="3"
+                    >
+                        3
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="4"
+                    >
+                        4
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="5"
+                    >
+                        5
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="6"
+                    >
+                        6
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="7"
+                    >
+                        7
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="8"
+                    >
+                        8
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="7-ps"
+                    >
+                        7 PS
+                    </button>
+
+                    <button
+                        class="chip semester-chip"
+                        data-semester="8-ps"
+                    >
+                        8 PS
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Work in Progress -->
+
+            <div
+                id="comingSoon"
+                class="wip-card hidden"
+            >
+
+                <h3>
+                    Work in Progress
+                </h3>
+
+                <p id="comingSoonText">
+                    Support for this
+                    branch/semester
+                    is under development.
+                </p>
+
+            </div>
+
+            <!-- Semester Info -->
+
+            <section
+                id="semesterInfo"
+                class="card hidden"
+            >
+
+                <div class="semester-info">
+
+                    <div>
+
+                        <h3
+                            id="semesterTitle"
+                        ></h3>
+
+                        <p
+                            id="subjectCount"
+                        ></p>
+
+                    </div>
+
+                    <div
+                        class="credits-box"
+                    >
+
+                        <h2
+                            id="totalCredits"
+                        >
+                            0
+                        </h2>
+
+                        <span>
+                            Credits
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Subjects -->
+
+            <section
+                id="subjectsCard"
+                class="card hidden"
+            >
+
+                <div
+                    id="subjectsContainer"
+                ></div>
+
+            </section>
+
+            <!-- Error -->
+
+            <div
+                id="errorMessage"
+                class="error-box hidden"
+            ></div>
+
+            <!-- Buttons -->
+
+            <section
+                id="buttonsSection"
+                class="buttons hidden"
+            >
+
+                <button
+                    id="calculateBtn"
+                    class="primary-btn"
+                >
+                    Calculate SGPA
+                </button>
+
+                <button
+                    id="resetBtn"
+                    class="secondary-btn"
+                >
+                    Reset
+                </button>
+
+            </section>
+
+            <!-- Result -->
+
+            <section
+                id="resultCard"
+                class="result-card hidden"
+            >
+
+                <p class="result-label">
+                    YOUR SGPA
+                </p>
+
+                <h2 id="sgpaValue">
+                    0.00
+                </h2>
+
+                <h3
+                    id="motivationTitle"
+                ></h3>
+
+                <p
+                    id="motivationMessage"
+                ></p>
+
+            </section>
+
+            <!-- Grade Scale -->
+
+            <section class="card">
+
+                <h3 class="card-title">
+                    Grade Scale
+                </h3>
+
+                <div class="grade-scale">
+
+                    <div>
+                        O → 10 pts → 90–100
+                    </div>
+
+                    <div>
+                        E → 9 pts → 80–89
+                    </div>
+
+                    <div>
+                        A → 8 pts → 70–79
+                    </div>
+
+                    <div>
+                        B → 7 pts → 60–69
+                    </div>
+
+                    <div>
+                        C → 6 pts → 50–59
+                    </div>
+
+                    <div>
+                        D → 5 pts → 40–49
+                    </div>
+
+                    <div>
+                        U → 0 pts → Below 40
+                    </div>
+
+                </div>
+
+                <div class="info-note">
+
+                    X → Debarred
+
+                    <br />
+
+                    W → Result Pending
+
+                </div>
+
+            </section>
+
         </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            Curated with warmth and compassion
-        </footer>
+        <!-- CGPA -->
 
-    </div>
+        <section
+            id="cgpaSection"
+            class="page-section hidden"
+        >
 
-    <!-- Data -->
+            <div class="wip-card">
+
+                <h2>
+                    Work in Progress
+                </h2>
+
+                <p>
+
+                    CGPA tracking is currently
+                    under development.
+
+                    It will support semester-wise
+                    GPA aggregation and
+                    academic tracking.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ABOUT -->
+
+        <section
+            id="aboutSection"
+            class="page-section hidden"
+        >
+
+            <div class="card">
+
+                <h2>
+                    About
+                </h2>
+
+                <p>
+
+                    Silicon Academic Toolkit
+                    is designed to help
+                    Silicon University students
+                    calculate GPA quickly,
+                    accurately and cleanly.
+
+                </p>
+
+                <br />
+
+                <p>
+                    Built by:
+                    <strong>
+                        Saswat
+                    </strong>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- DATA -->
     <script src="data.js"></script>
 
-    <!-- Logic -->
+    <!-- LOGIC -->
     <script src="script.js"></script>
 
 </body>
+
 </html>
