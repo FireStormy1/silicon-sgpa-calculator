@@ -1322,5 +1322,991 @@ const semesterData = {
                 type: "practical"
             }
         ]
+    },
+
+    // ======================
+    // EEE - Semester 7
+    // ======================
+
+    "eee-7": {
+        label: "EEE • Semester 7",
+
+        subjects: [
+
+            {
+                name: "Open Elective - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "MOOC - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - IV",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Honours / Minor - V",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Skill Lab & Project - I",
+                credit: 2,
+                type: "practical"
+                
+            },
+
+            {
+                name: "Summer Internship - III",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    "eee-7-ps": {
+
+        label:
+        "EEE • Semester 7 • Practice School",
+
+        subjects: [
+
+            {
+                name: "Practice School / Industry Internship",
+                credit: 15,
+                type: "project"
+            },
+
+            {
+                name: "Summer Internship - III",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // EEE - Semester 8
+    // ======================
+
+    "eee-8": {
+        label: "EEE • Semester 8",
+
+        subjects: [
+
+            {
+                name: "Open Elective - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "MOOC - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Presentation Skills & Technical Seminar",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Project - II",
+                credit: 8,
+                type: "project"
+            }
+        ]
+    },
+
+    "eee-8-ps": {
+
+        label:
+        "EEE • Semester 8 • Practice School",
+
+        subjects: [
+
+            {
+                name: "Practice School / Industry Internship",
+                credit: 15,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // EIE - Semester 3
+    // ======================
+
+    "eie-3": {
+        label: "EIE • Semester 3",
+
+        subjects: [
+
+            {
+                name: "Vector Calculus & Fourier Analysis",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "OOP Using Java",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Management & Economics for Engineers / Biology for Engineers",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Basics of Instrumentation",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Circuit Theory",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Analog Electronic Circuits",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "OOP Using Java Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Basics of Instrumentation Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Analog Electronic Circuits Lab",
+                credit: 2,
+                type: "practical"
+            },
+
+            {
+                name: "Summer Internship I",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // EIE - Semester 4
+    // ======================
+
+    "eie-4": {
+        label: "EIE • Semester 4",
+
+        subjects: [
+
+            {
+                name: "Complex Analysis & Numerical Methods",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Programming in Python",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Management & Economics for Engineers / Biology for Engineers",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Transducers & Measurement Systems",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Digital Electronic Circuits",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - I",
+                credit: 3,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Programming in Python Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Transducers & Measurement Systems Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Digital Electronic Circuits Lab",
+                credit: 2,
+                type: "practical"
+            },
+
+            {
+                name: "Simulation & Design Lab",
+                credit: 1,
+                type: "practical"
+            },            
+
+        ]
+    },
+
+    // ======================
+    // EIE - Semester 5
+    // ======================
+
+    "eie-5": {
+        label: "EIE • Semester 5",
+
+        subjects: [
+
+            {
+                name: "Introduction to Digital Signal Processing",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Digital VLSI Design",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "Instrumentation Devices & Systems",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "Communication Systems Engineering",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - III",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - II",
+                credit: 3,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Introduction to Digital Signal Processing Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Digital VLSI Design Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Instrumentation Devices & Systems Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Soft Skills for Professionals",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Summer Internship - II",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // EIE - Semester 6
+    // ======================
+
+    "eie-6": {
+        label: "EIE • Semester 6",
+
+        subjects: [
+
+            {
+                name: "Industrial Automation & Control",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Microprocessors & Microcontrollers",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Control Systems Engineering",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - IV",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - V",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - VI",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - III",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Industrial Automation & Control Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Microprocessors & Microcontrollers Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Emerging Technologies Lab / Entrepreneurship & Innovation",
+                credit: 2,
+                type: "practical"
+            },
+
+            {
+                name: "Technical & Research Writing",
+                credit: 1,
+                type: "practical"
+            }
+        ]
+    },
+
+    // ======================
+    // EIE - Semester 7
+    // ======================
+
+    "eie-7": {
+        label: "EIE • Semester 7",
+
+        subjects: [
+
+            {
+                name: "Open Elective - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "MOOC - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - IV",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Honours / Minor - V",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Skill Lab & Project - I",
+                credit: 2,
+                type: "practical"
+                
+            },
+
+            {
+                name: "Summer Internship - III",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    "eie-7-ps": {
+
+        label:
+        "EIE • Semester 7 • Practice School",
+
+        subjects: [
+
+            {
+                name: "Practice School / Industry Internship",
+                credit: 15,
+                type: "project"
+            },
+
+            {
+                name: "Summer Internship - III",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // EIE - Semester 8
+    // ======================
+
+    "eie-8": {
+        label: "EIE • Semester 8",
+
+        subjects: [
+
+            {
+                name: "Open Elective - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "MOOC - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Presentation Skills & Technical Seminar",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Project - II",
+                credit: 8,
+                type: "project"
+            }
+        ]
+    },
+
+    "eie-8-ps": {
+
+        label:
+        "EIE • Semester 8 • Practice School",
+
+        subjects: [
+
+            {
+                name: "Practice School / Industry Internship",
+                credit: 15,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // VLSI - Semester 3
+    // ======================
+
+    "vlsi-3": {
+        label: "VLSI • Semester 3",
+
+        subjects: [
+
+            {
+                name: "Vector Calculus & Fourier Analysis",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Programming in Python",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Management & Economics for Engineers / Biology for Engineers",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Signals & Systems",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Circuit Theory",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Analog Circuit Design",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "Programming in Python Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Circuit Theory Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Analog Circuit Design Lab",
+                credit: 2,
+                type: "practical"
+            },
+
+            {
+                name: "Summer Internship I",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // VLSI - Semester 4
+    // ======================
+
+    "vlsi-4": {
+        label: "VLSI • Semester 4",
+
+        subjects: [
+
+            {
+                name: "Complex Analysis & Numerical Methods",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Solid State Devices",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Management & Economics for Engineers / Biology for Engineers",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Digital Circuit Design",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "Communication Systems Engineering",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - I",
+                credit: 3,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Linux & TCL for SSD Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Digital Circuit Design Lab",
+                credit: 2,
+                type: "practical"
+            },
+
+            {
+                name: "Communication Systems Engineering Lab",
+                credit: 1,
+                type: "practical"
+            },
+        ]
+    },
+
+    // ======================
+    // VLSI - Semester 5
+    // ======================
+
+    "vlsi-5": {
+        label: "VLSI • Semester 5",
+
+        subjects: [
+
+            {
+                name: "Digital Signal Processing",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Electromagnetic Waves",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "CMOS Integrated Circuits",
+                credit: 4,
+                type: "theory"
+            },
+
+            {
+                name: "Electronic System Design",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - III",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - II",
+                credit: 3,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Digital Signal Processing Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Electromagnetic Waves Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "CMOS Integrated Circuits Lab",
+                credit: 1,
+                type: "practical"
+            },
+            
+            {
+                name: "Electronic System Design Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Soft Skills for Professionals",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Summer Internship - II",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // VLSI - Semester 6
+    // ======================
+
+    "vlsi-6": {
+        label: "VLSI • Semester 6",
+
+        subjects: [
+
+            {
+                name: "Microprocessors & Microcontrollers",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Analog VLSI Design",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Control Systems Engineering",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - IV",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - V",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Program Elective - VI",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - III",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Microprocessors & Microcontrollers Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Analog VLSI Design Lab",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Emerging Technologies Lab / Entrepreneurship & Innovation",
+                credit: 2,
+                type: "practical"
+            },
+
+            {
+                name: "Technical & Research Writing",
+                credit: 1,
+                type: "practical"
+            }
+        ]
+    },
+
+    // ======================
+    // VLSI - Semester 7
+    // ======================
+
+    "vlsi-7": {
+        label: "VLSI • Semester 7",
+
+        subjects: [
+
+            {
+                name: "Open Elective - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "MOOC - I",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Honours / Minor - IV",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Honours / Minor - V",
+                credit: 4,
+                optional: true,
+                type: "optional"
+            },
+
+            {
+                name: "Skill Lab & Project - I",
+                credit: 2,
+                type: "practical"
+                
+            },
+
+            {
+                name: "Summer Internship - III",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    "vlsi-7-ps": {
+
+        label:
+        "VLSI • Semester 7 • Practice School",
+
+        subjects: [
+
+            {
+                name: "Practice School / Industry Internship",
+                credit: 15,
+                type: "project"
+            },
+
+            {
+                name: "Summer Internship - III",
+                credit: 1,
+                type: "project"
+            }
+        ]
+    },
+
+    // ======================
+    // VLSI - Semester 8
+    // ======================
+
+    "vlsi-8": {
+        label: "VLSI • Semester 8",
+
+        subjects: [
+
+            {
+                name: "Open Elective - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "MOOC - II",
+                credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Presentation Skills & Technical Seminar",
+                credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Project - II",
+                credit: 8,
+                type: "project"
+            }
+        ]
+    },
+
+    "vlsi-8-ps": {
+
+        label:
+        "VLSI • Semester 8 • Practice School",
+
+        subjects: [
+
+            {
+                name: "Practice School / Industry Internship",
+                credit: 15,
+                type: "project"
+            }
+        ]
     }
 };
