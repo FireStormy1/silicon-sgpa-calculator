@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <meta charset="UTF-8" />
 
     <meta
@@ -11,7 +13,7 @@
     <meta name="theme-color" content="#0d1117">
     
     <title>
-        Silicon Academic Toolkit
+        Acadelytics
     </title>
 
     
@@ -28,6 +30,7 @@
     />
 </head>
 
+
 <body>
 
     <!-- NAVBAR -->
@@ -37,7 +40,7 @@
         <div class="nav-container">
 
             <div class="brand">
-                Silicon Academic Toolkit
+                Acadelytics
             </div>
 
             <div class="nav-links">
@@ -88,17 +91,17 @@
             <div class="hero-card">
 
                 <span class="hero-badge">
-                    Built for Silicon University Students
+                    Built for Siliconites, by a Siliconite.
                 </span>
 
                 <h1>
-                    Silicon Academic Toolkit
+                    Every Grade Tells a Story
                 </h1>
 
                 <p class="hero-text">
 
                     Smart academic tools for
-                    Silicon University students.
+                    Siliconites.
 
                     Calculate SGPA accurately,
                     track academic performance,
@@ -110,7 +113,7 @@
                     id="goToSgpa"
                     class="primary-btn"
                 >
-                    Open SGPA Calculator
+                    SGPA Calculator
                 </button>
 
             </div>
@@ -134,7 +137,7 @@
 
                 <p>
                     Calculate semester GPA
-                    quickly and accurately
+                    quickly and accurately.
                 </p>
 
             </div>
@@ -475,30 +478,41 @@
             class="page-section hidden"
         >
 
-            <div class="card">
+            <div class="card about-card">
 
-                <h2>
-                    About
-                </h2>
+                <h2 class="about-title">Developer Profile</h2>
 
-                <p>
+                <h3 class="about-name">Saswat Dixit</h3>
 
-                    Silicon Academic Toolkit
-                    is designed to help
-                    Silicon University students
-                    calculate GPA quickly,
-                    accurately and cleanly.
-
+                <p class="about-subtitle">
+                    Silicon University | B.Tech CSE
                 </p>
 
-                <br />
-
-                <p>
-                    Built by:
-                    <strong>
-                        Saswat
-                    </strong>
+                <p class="about-bio">
+                    Passionate about DSA, problem-solving, and software development. 
+                    Currently focused on building strong programming fundamentals and real-world projects.
                 </p>
+
+                <!-- SOCIAL ICONS -->
+                <div class="social-icons">
+
+                    <a href="https://www.linkedin.com/in/saswatdixit/" target="_blank" class="icon-btn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+
+                    <a href="https://github.com/FireStormy1" target="_blank" class="icon-btn">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <a href="saswatdixit01@gmail.com" class="icon-btn">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+
+                    <a href="https://leetcode.com/u/FireStormy/" target="_blank" class="icon-btn">
+                        <i class="fa-solid fa-code"></i>
+                    </a>
+
+                </div>
 
             </div>
 
@@ -511,6 +525,12 @@
 
     <!-- LOGIC -->
     <script src="script.js"></script>
+
+    <script>
+    window.onload = function () {
+        lucide.createIcons();
+    };
+    </script>
 
 </body>
 
