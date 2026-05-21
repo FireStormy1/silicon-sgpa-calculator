@@ -1,11 +1,9 @@
 // ---------- STATE ----------
-
 let selectedBranch = null;
 let selectedSemester = null;
 let currentSemesterKey = null;
 
 // ---------- GRADE POINTS ----------
-
 const gradePoints = {
     O: 10,
     E: 9,
@@ -16,849 +14,385 @@ const gradePoints = {
     U: 0
 };
 
-// ---------- ELEMENTS ----------
+// ---------- WAIT FOR DOM ----------
+document.addEventListener("DOMContentLoaded", () => {
 
-const navLinks =
-    document.querySelectorAll(
-        ".nav-link"
-    );
+    // ---------- ELEMENTS ----------
+    const navLinks = document.querySelectorAll(".nav-link");
 
-const sections = {
-    home:
-        document.getElementById(
-            "homeSection"
-        ),
+    const sections = {
+        home: document.getElementById("homeSection"),
+        sgpa: document.getElementById("sgpaSection"),
+        cgpa: document.getElementById("cgpaSection"),
+        about: document.getElementById("aboutSection")
+    };
 
-    sgpa:
-        document.getElementById(
-            "sgpaSection"
-        ),
+    const goToSgpa = document.getElementById("goToSgpa");
 
-    cgpa:
-        document.getElementById(
-            "cgpaSection"
-        ),
+    const branchChips = document.querySelectorAll(".branch-chip");
+    const semesterChips = document.querySelectorAll(".semester-chip");
 
-    about:
-        document.getElementById(
-            "aboutSection"
-        )
-};
+    const semesterInfo = document.getElementById("semesterInfo");
+    const semesterTitle = document.getElementById("semesterTitle");
+    const subjectCount = document.getElementById("subjectCount");
+    const totalCredits = document.getElementById("totalCredits");
 
-const goToSgpa =
-    document.getElementById(
-        "goToSgpa"
-    );
+    const subjectsCard = document.getElementById("subjectsCard");
+    const subjectsContainer = document.getElementById("subjectsContainer");
 
-const branchChips =
-    document.querySelectorAll(
-        ".branch-chip"
-    );
+    const buttonsSection = document.getElementById("buttonsSection");
+    const calculateBtn = document.getElementById("calculateBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
-const semesterChips =
-    document.querySelectorAll(
-        ".semester-chip"
-    );
+    const resultCard = document.getElementById("resultCard");
+    const sgpaValue = document.getElementById("sgpaValue");
 
-const semesterInfo =
-    document.getElementById(
-        "semesterInfo"
-    );
+    const motivationTitle = document.getElementById("motivationTitle");
+    const motivationMessage = document.getElementById("motivationMessage");
 
-const semesterTitle =
-    document.getElementById(
-        "semesterTitle"
-    );
+    const errorMessage = document.getElementById("errorMessage");
+    const comingSoon = document.getElementById("comingSoon");
 
-const subjectCount =
-    document.getElementById(
-        "subjectCount"
-    );
+    // ---------- NAVIGATION ----------
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
 
-const totalCredits =
-    document.getElementById(
-        "totalCredits"
-    );
+            const section = link.dataset.section;
 
-const subjectsCard =
-    document.getElementById(
-        "subjectsCard"
-    );
+            navLinks.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
 
-const subjectsContainer =
-    document.getElementById(
-        "subjectsContainer"
-    );
+            Object.values(sections).forEach(sec => sec.classList.add("hidden"));
+            sections[section].classList.remove("hidden");
+        });
+    });
 
-const buttonsSection =
-    document.getElementById(
-        "buttonsSection"
-    );
+    goToSgpa?.addEventListener("click", () => {
+        document.querySelector('[data-section="sgpa"]').click();
+    });
 
-const calculateBtn =
-    document.getElementById(
-        "calculateBtn"
-    );
+    // ---------- BRANCH ----------
+    branchChips.forEach(chip => {
+        chip.addEventListener("click", () => {
 
-const resetBtn =
-    document.getElementById(
-        "resetBtn"
-    );
+            branchChips.forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
 
-const resultCard =
-    document.getElementById(
-        "resultCard"
-    );
-
-const sgpaValue =
-    document.getElementById(
-        "sgpaValue"
-    );
-
-const motivationTitle =
-    document.getElementById(
-        "motivationTitle"
-    );
-
-const motivationMessage =
-    document.getElementById(
-        "motivationMessage"
-    );
-
-const errorMessage =
-    document.getElementById(
-        "errorMessage"
-    );
-
-const comingSoon =
-    document.getElementById(
-        "comingSoon"
-    );
-
-// ---------- NAVIGATION ----------
-
-navLinks.forEach(link => {
-
-    link.addEventListener(
-        "click",
-        () => {
-
-            const section =
-                link.dataset.section;
-
-            navLinks.forEach(
-                l =>
-                l.classList.remove(
-                    "active"
-                )
-            );
-
-            link.classList.add(
-                "active"
-            );
-
-            Object.values(
-                sections
-            ).forEach(
-                section => {
-
-                    section.classList.add(
-                        "hidden"
-                    );
-                }
-            );
-
-            sections[
-                section
-            ].classList.remove(
-                "hidden"
-            );
-        }
-    );
-});
-
-goToSgpa?.addEventListener(
-    "click",
-    () => {
-
-        document.querySelector(
-            '[data-section="sgpa"]'
-        ).click();
-    }
-);
-
-// ---------- BRANCH ----------
-
-branchChips.forEach(
-    chip => {
-
-    chip.addEventListener(
-        "click",
-        () => {
-
-            branchChips.forEach(
-                c =>
-                c.classList.remove(
-                    "active"
-                )
-            );
-
-            chip.classList.add(
-                "active"
-            );
-
-            selectedBranch =
-                chip.dataset.branch;
-
+            selectedBranch = chip.dataset.branch;
             loadSemesterData();
-        }
-    );
-});
+        });
+    });
 
-// ---------- SEMESTER ----------
+    // ---------- SEMESTER ----------
+    semesterChips.forEach(chip => {
+        chip.addEventListener("click", () => {
 
-semesterChips.forEach(
-    chip => {
+            semesterChips.forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
 
-    chip.addEventListener(
-        "click",
-        () => {
-
-            semesterChips.forEach(
-                c =>
-                c.classList.remove(
-                    "active"
-                )
-            );
-
-            chip.classList.add(
-                "active"
-            );
-
-            selectedSemester =
-                chip.dataset.semester;
-
+            selectedSemester = chip.dataset.semester;
             loadSemesterData();
-        }
-    );
-});
-
-// ---------- LOAD DATA ----------
-
-function loadSemesterData() {
-
-    hideEverything();
-
-    if (
-        !selectedBranch ||
-        !selectedSemester
-    ) {
-        return;
-    }
-
-    let key;
-
-    // Semester 1 & 2 common
-    if (
-        selectedSemester === "1" ||
-        selectedSemester === "2"
-    ) {
-        key = `1yr-${selectedSemester}`;
-    }
-
-    else  {
-        key = `${selectedBranch.toLowerCase()}-${selectedSemester}`;
-    }
-
-    const data = semesterData[key];
-
-    if (!data) {
-        comingSoon.classList.remove("hidden");
-        return;
-    }
-
-    currentSemesterKey = key;
-
-    renderSemesterInfo(data);
-    renderSubjects(data);
-
-    semesterInfo.classList.remove("hidden");
-    subjectsCard.classList.remove("hidden");
-    buttonsSection.classList.remove("hidden");
-}
-
-// ---------- SEMESTER INFO ----------
-
-function renderSemesterInfo(
-    data
-) {
-
-    semesterTitle.textContent =
-        data.label;
-
-    subjectCount.textContent =
-        `${data.subjects.length} Subjects`;
-
-    let credits = 0;
-
-    data.subjects.forEach(
-        subject => {
-
-            if (
-                !subject.optional
-            ) {
-
-                credits +=
-                    subject.credit;
-            }
-        }
-    );
-
-    totalCredits.textContent =
-        credits;
-}
-
-// ---------- SUBJECTS ----------
-
-function renderSubjects(
-    data
-) {
-
-    subjectsContainer.innerHTML =
-        "";
-
-    data.subjects.forEach(
-        subject => {
-
-        const row =
-            document.createElement(
-                "div"
-            );
-
-        row.className =
-            "subject-row";
-
-        row.dataset.credit =
-            subject.credit;
-
-        row.innerHTML = `
-            <div class="subject-info">
-                <h4>
-                    ${subject.name}
-                </h4>
-
-                <p>
-                    Credit:
-                    ${subject.credit}
-                </p>
-            </div>
-
-            <div class="subject-controls">
-
-                ${
-                    subject.optional
-
-                    ?
-
-                    `
-                    <div class="optional-pills">
-
-                        <button
-                        class="toggle-pill optional-toggle active"
-                        data-value="no">
-                            Not Taken
-                        </button>
-
-                        <button
-                        class="toggle-pill optional-toggle"
-                        data-value="yes">
-                            Taken
-                        </button>
-
-                    </div>
-
-                    <div class="optional-content hidden"></div>
-                    `
-
-                    :
-
-                    `
-                    <div class="subject-input-wrapper">
-                        ${renderInputUI()}
-                    </div>
-                    `
-                }
-
-            </div>
-        `;
-
-        subjectsContainer
-        .appendChild(row);
+        });
     });
 
-    attachListeners();
-}
+    // ---------- LOAD DATA ----------
+    function loadSemesterData() {
 
-// ---------- INPUT UI ----------
+        hideEverything();
 
-function renderInputUI() {
+        if (!selectedBranch || !selectedSemester) return;
 
-    return `
-        <div class="method-pills">
+        let key;
 
-            <button
-                class="toggle-pill method-btn active"
-                data-method="grade"
-            >
-                Grade
-            </button>
-
-            <button
-                class="toggle-pill method-btn"
-                data-method="marks"
-            >
-                Marks
-            </button>
-
-        </div>
-
-        <div class="subject-input">
-            ${renderGradePills()}
-        </div>
-    `;
-}
-
-function renderGradePills() {
-
-    return `
-        <div class="grade-pills">
-
-            ${[
-                "O",
-                "E",
-                "A",
-                "B",
-                "C",
-                "D",
-                "U"
-            ]
-
-            .map(grade => `
-                <button
-                    class="grade-pill"
-                    data-grade="${grade}"
-                >
-                    ${grade}
-                </button>
-            `)
-
-            .join("")}
-
-        </div>
-    `;
-}
-
-function renderMarksInput() {
-
-    return `
-        <input
-            type="number"
-            min="0"
-            max="100"
-            class="marks-input"
-            placeholder="Enter marks"
-        />
-    `;
-}
-
-// ---------- LISTENERS ----------
-
-function attachListeners() {
-
-    // Optional subject
-
-    document
-    .querySelectorAll(
-        ".optional-toggle"
-    )
-
-    .forEach(btn => {
-
-        btn.onclick =
-        function () {
-
-            const wrapper =
-                this.parentElement;
-
-            wrapper
-            .querySelectorAll(
-                ".optional-toggle"
-            )
-
-            .forEach(
-                b =>
-                b.classList.remove(
-                    "active"
-                )
-            );
-
-            this.classList.add(
-                "active"
-            );
-
-            const content =
-                wrapper.nextElementSibling;
-
-            if (
-                this.dataset.value ===
-                "yes"
-            ) {
-
-                content.innerHTML =
-                    renderInputUI();
-
-                content
-                .classList.remove(
-                    "hidden"
-                );
-
-                attachListeners();
-            }
-
-            else {
-
-                content.innerHTML =
-                    "";
-
-                content
-                .classList.add(
-                    "hidden"
-                );
-            }
-        };
-    });
-
-    // Grade / marks switch
-
-    document
-    .querySelectorAll(
-        ".method-btn"
-    )
-
-    .forEach(btn => {
-
-        btn.onclick =
-        function () {
-
-            const parent =
-                this.parentElement;
-
-            parent
-            .querySelectorAll(
-                ".method-btn"
-            )
-
-            .forEach(
-                b =>
-                b.classList.remove(
-                    "active"
-                )
-            );
-
-            this.classList.add(
-                "active"
-            );
-
-            const inputBox =
-                parent.nextElementSibling;
-
-            inputBox.innerHTML =
-
-                this.dataset.method
-                === "grade"
-
-                ?
-                renderGradePills()
-
-                :
-                renderMarksInput();
-
-            attachListeners();
-        };
-    });
-
-    // Grade pills
-
-    document
-    .querySelectorAll(
-        ".grade-pill"
-    )
-
-    .forEach(btn => {
-
-        btn.onclick =
-        function () {
-
-            this.parentElement
-            .querySelectorAll(
-                ".grade-pill"
-            )
-
-            .forEach(
-                b =>
-                b.classList.remove(
-                    "active"
-                )
-            );
-
-            this.classList.add(
-                "active"
-            );
-        };
-    });
-}
-
-// ---------- MARKS TO GRADE ----------
-
-function marksToGrade(
-    marks
-) {
-
-    marks =
-        Number(marks);
-
-    if (marks >= 90)
-        return "O";
-
-    if (marks >= 80)
-        return "E";
-
-    if (marks >= 70)
-        return "A";
-
-    if (marks >= 60)
-        return "B";
-
-    if (marks >= 50)
-        return "C";
-
-    if (marks >= 40)
-        return "D";
-
-    return "U";
-}
-
-// ---------- CALCULATE ----------
-
-calculateBtn?.addEventListener(
-    "click",
-    calculateSGPA
-);
-
-function calculateSGPA() {
-
-    const rows =
-        document.querySelectorAll(
-            ".subject-row"
-        );
-
-    let weightedSum = 0;
-    let creditSum = 0;
-
-    for (
-        const row
-        of rows
-    ) {
-
-        const credit =
-            Number(
-                row.dataset.credit
-            );
-
-        const optional =
-            row.querySelector(
-                ".optional-toggle.active"
-            );
-
-        if (
-            optional &&
-            optional.dataset.value
-            === "no"
-        ) {
-            continue;
+        if (selectedSemester === "1" || selectedSemester === "2") {
+            key = `1yr-${selectedSemester}`;
+        } else {
+            key = `${selectedBranch.toLowerCase()}-${selectedSemester}`;
         }
 
-        let grade =
-            null;
+        const data = semesterData[key];
 
-        const gradeBtn =
-            row.querySelector(
-                ".grade-pill.active"
-            );
-
-        const marksInput =
-            row.querySelector(
-                ".marks-input"
-            );
-
-        if (
-            gradeBtn
-        ) {
-
-            grade =
-                gradeBtn
-                .dataset.grade;
-        }
-
-        else if (
-            marksInput &&
-            marksInput.value
-            !== ""
-        ) {
-
-            grade =
-                marksToGrade(
-                    marksInput.value
-                );
-        }
-
-        else {
-
-            showError(
-                "Please complete all subject inputs."
-            );
-
+        if (!data) {
+            comingSoon.classList.remove("hidden");
             return;
         }
 
-        weightedSum +=
-            credit *
-            gradePoints[grade];
+        currentSemesterKey = key;
 
-        creditSum +=
-            credit;
+        renderSemesterInfo(data);
+        renderSubjects(data);
+
+        semesterInfo.classList.remove("hidden");
+        subjectsCard.classList.remove("hidden");
+        buttonsSection.classList.remove("hidden");
     }
 
-    hideError();
+    // ---------- INFO ----------
+    function renderSemesterInfo(data) {
+        semesterTitle.textContent = data.label;
+        subjectCount.textContent = `${data.subjects.length} Subjects`;
 
-    const sgpa = (
-        weightedSum /
-        creditSum
-    ).toFixed(2);
+        let credits = 0;
+        data.subjects.forEach(s => {
+            if (!s.optional) credits += s.credit;
+        });
 
-    showResult(
-        Number(sgpa)
-    );
-}
-
-// ---------- RESULT ----------
-
-function showResult(
-    sgpa
-) {
-
-    sgpaValue.textContent =
-        sgpa;
-
-    if (
-        sgpa >= 9
-    ) {
-
-        motivationTitle.textContent =
-            "🎉 Excellent!";
-
-        motivationMessage.textContent =
-            "Outstanding performance this semester.";
+        totalCredits.textContent = credits;
     }
 
-    else if (
-        sgpa >= 8
-    ) {
+    // ---------- SUBJECTS ----------
+    function renderSubjects(data) {
 
-        motivationTitle.textContent =
-            "✨ Great Job!";
+        subjectsContainer.innerHTML = "";
 
-        motivationMessage.textContent =
-            "You're doing really well.";
+        data.subjects.forEach(subject => {
+
+            const row = document.createElement("div");
+            row.className = "subject-row";
+            row.dataset.credit = subject.credit;
+
+            row.innerHTML = `
+                <div class="subject-info">
+                    <h4>${subject.name}</h4>
+                    <p>Credit: ${subject.credit}</p>
+                </div>
+
+                <div class="subject-controls">
+
+                    ${subject.optional ? `
+                        <div class="optional-pills">
+                            <button class="toggle-pill optional-toggle active" data-value="no">Not Taken</button>
+                            <button class="toggle-pill optional-toggle" data-value="yes">Taken</button>
+                        </div>
+
+                        <div class="optional-content hidden"></div>
+                    ` : `
+                        ${renderInputUI()}
+                    `}
+
+                </div>
+            `;
+
+            subjectsContainer.appendChild(row);
+        });
+
+        attachListeners();
     }
 
-    else {
+    // ---------- INPUT UI ----------
+    function renderInputUI() {
+        return `
+        <div class="method-pills">
+            <button class="toggle-pill method-btn active" data-method="grade">Grade</button>
+            <button class="toggle-pill method-btn" data-method="marks">Marks</button>
+        </div>
 
-        motivationTitle.textContent =
-            "💪 Keep Going";
-
-        motivationMessage.textContent =
-            "Consistency beats motivation.";
+        <div class="input-area">
+            <div class="grade-area">${renderGradePills()}</div>
+            <div class="marks-area hidden">${renderMarksInput()}</div>
+        </div>
+        `;
     }
 
-    resultCard
-    .classList.remove(
-        "hidden"
-    );
-}
-
-// ---------- RESET ----------
-
-resetBtn?.addEventListener(
-    "click",
-    () => {
-
-        location.reload();
+    function renderGradePills() {
+        return `
+        <div class="grade-pills">
+            ${["O","E","A","B","C","D","U"].map(g =>
+                `<button class="grade-pill" data-grade="${g}">${g}</button>`
+            ).join("")}
+        </div>
+        `;
     }
-);
 
-// ---------- ERROR ----------
+    function renderMarksInput() {
+        return `
+        <input type="number" min="0" max="100" step="1" autocomplete="off" class="marks-input" placeholder="Enter marks">
+        `;
+    }
 
-function showError(
-    message
-) {
+    // ---------- LISTENERS ----------
+    function attachListeners() {
 
-    errorMessage.textContent =
-        message;
+        document.querySelectorAll(".marks-input").forEach(input => {
+            input.oninput = function () {
 
-    errorMessage
-    .classList.remove(
-        "hidden"
-    );
-}
+                // remove non-numeric (extra safety)
+                this.value = this.value.replace(/[^0-9]/g, "");
 
-function hideError() {
+                let val = Number(this.value);
 
-    errorMessage
-    .classList.add(
-        "hidden"
-    );
-}
+                if (val > 100) {
+                    this.value = 100;
+                }
 
-// ---------- HIDE ----------
+                if (val < 0) {
+                    this.value = 0;
+                }
+            };
+        });
 
-function hideEverything() {
+        // OPTIONAL
+        document.querySelectorAll(".optional-toggle").forEach(btn => {
+            btn.onclick = function () {
 
-    comingSoon
-    .classList.add(
-        "hidden"
-    );
+                const wrapper = this.parentElement;
 
-    semesterInfo
-    .classList.add(
-        "hidden"
-    );
+                wrapper.querySelectorAll(".optional-toggle")
+                    .forEach(b => b.classList.remove("active"));
 
-    subjectsCard
-    .classList.add(
-        "hidden"
-    );
+                this.classList.add("active");
 
-    buttonsSection
-    .classList.add(
-        "hidden"
-    );
+                const content = wrapper.nextElementSibling;
 
-    resultCard
-    .classList.add(
-        "hidden"
-    );
+                if (this.dataset.value === "yes") {
+                    content.innerHTML = renderInputUI();
+                    content.classList.remove("hidden");
+                    attachListeners();
+                } else {
+                    content.innerHTML = "";
+                    content.classList.add("hidden");
+                }
+            };
+        });
 
-    subjectsContainer
-    .innerHTML = "";
-}
+        // METHOD SWITCH
+        document.querySelectorAll(".method-btn").forEach(btn => {
+            btn.onclick = function () {
+
+                const parent = this.parentElement;
+                const container = parent.nextElementSibling;
+
+                const gradeArea = container.querySelector(".grade-area");
+                const marksArea = container.querySelector(".marks-area");
+
+                parent.querySelectorAll(".method-btn")
+                    .forEach(b => b.classList.remove("active"));
+
+                this.classList.add("active");
+
+                if (this.dataset.method === "grade") {
+                    gradeArea.classList.remove("hidden");
+                    marksArea.classList.add("hidden");
+                } else {
+                    gradeArea.classList.add("hidden");
+                    marksArea.classList.remove("hidden");
+                }
+
+                attachListeners();
+            };
+        });
+
+        // GRADE SELECTION
+        document.querySelectorAll(".grade-pill").forEach(btn => {
+            btn.onclick = function () {
+
+                this.parentElement
+                    .querySelectorAll(".grade-pill")
+                    .forEach(b => b.classList.remove("active"));
+
+                this.classList.add("active");
+            };
+        });
+    }
+
+    // ---------- MARKS TO GRADE ----------
+    function marksToGrade(marks) {
+        marks = Number(marks);
+
+        if (marks >= 90) return "O";
+        if (marks >= 80) return "E";
+        if (marks >= 70) return "A";
+        if (marks >= 60) return "B";
+        if (marks >= 50) return "C";
+        if (marks >= 40) return "D";
+        return "U";
+    }
+
+    // ---------- CALCULATE ----------
+    calculateBtn?.addEventListener("click", calculateSGPA);
+
+    function calculateSGPA() {
+
+        const rows = document.querySelectorAll(".subject-row");
+
+        let weightedSum = 0;
+        let creditSum = 0;
+
+        for (const row of rows) {
+
+            const credit = Number(row.dataset.credit);
+
+            const optional = row.querySelector(".optional-toggle.active");
+
+            if (optional && optional.dataset.value === "no") continue;
+
+            let grade = null;
+
+            const gradeBtn = row.querySelector(".grade-pill.active");
+            const marksInput = row.querySelector(".marks-input");
+
+            if (gradeBtn) {
+                grade = gradeBtn.dataset.grade;
+            }
+            else if (marksInput && marksInput.value !== "") {
+                grade = marksToGrade(marksInput.value);
+            }
+            else {
+                showError("Please complete all subject inputs.");
+                return;
+            }
+
+            weightedSum += credit * gradePoints[grade];
+            creditSum += credit;
+        }
+
+        hideError();
+
+        const sgpa = (weightedSum / creditSum).toFixed(2);
+        showResult(Number(sgpa));
+    }
+
+    // ---------- RESULT ----------
+    function showResult(sgpa) {
+
+        sgpaValue.textContent = sgpa;
+
+        if (sgpa >= 9) {
+            motivationTitle.textContent = "🎉 Excellent!";
+            motivationMessage.textContent = "Outstanding performance this semester.";
+        } else if (sgpa >= 8) {
+            motivationTitle.textContent = "✨ Great Job!";
+            motivationMessage.textContent = "You're doing really well.";
+        } else {
+            motivationTitle.textContent = "💪 Keep Going";
+            motivationMessage.textContent = "Consistency beats motivation.";
+        }
+
+        resultCard.classList.remove("hidden");
+    }
+
+    // ---------- RESET ----------
+    resetBtn?.addEventListener("click", () => location.reload());
+
+    // ---------- ERROR ----------
+    function showError(msg) {
+        errorMessage.textContent = msg;
+        errorMessage.classList.remove("hidden");
+    }
+
+    function hideError() {
+        errorMessage.classList.add("hidden");
+    }
+
+    // ---------- HIDE ----------
+    function hideEverything() {
+
+        comingSoon.classList.add("hidden");
+        semesterInfo.classList.add("hidden");
+        subjectsCard.classList.add("hidden");
+        buttonsSection.classList.add("hidden");
+        resultCard.classList.add("hidden");
+
+        subjectsContainer.innerHTML = "";
+    }
+});
