@@ -1,4 +1,4 @@
-🎓 Silicon Academic Toolkit
+🎓 Acadelytics
 
 A clean, fast, and intuitive academic grade management system built for students of Silicon University.
 It helps calculate SGPA, track semester performance, and manage academic data in a structured and user-friendly way.
