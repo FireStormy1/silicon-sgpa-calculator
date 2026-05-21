@@ -1,21 +1,23 @@
 🎓 Acadelytics
 
 A clean, fast, and intuitive academic grade management system built for students of Silicon University.
-It helps calculate SGPA, track semester performance, and manage academic data in a structured and user-friendly way.
+It helps calculate SGPA & CGPA, track semester performance, and manage academic data in a structured and user-friendly way.
 
 🚀 Live Demo
 
-https://firestormy1.github.io/Acadelytics/
+👉 https://firestormy1.github.io/Acadelytics/
 
 📌 About the Project
 
-Silicon Academic Toolkit is designed to simplify academic tracking for engineering students. Instead of manually calculating grades or using messy spreadsheets, this tool provides a structured interface to:
+Acadelytics is designed to simplify academic tracking for engineering students. Instead of manually calculating grades or using messy spreadsheets, this tool provides a structured interface to manage and evaluate academic performance efficiently.
 
-Calculate SGPA accurately
-Select branch-wise and semester-wise subjects
-Switch between grade-based and marks-based input
+It allows students to:
+
+Calculate SGPA for each semester
+Compute overall CGPA across semesters
+Switch between grade-based and marks-based input systems
 Handle optional subjects dynamically
-Get instant performance results
+Get instant performance feedback
 
 The UI is inspired by modern developer tools like GitHub and LeetCode, focusing on clarity, speed, and usability.
 
@@ -24,70 +26,80 @@ The UI is inspired by modern developer tools like GitHub and LeetCode, focusing 
 Branch-wise subject loading
 Semester-wise curriculum support
 Automatic SGPA computation using credit-weighted formula
+Optional subject handling
+📈 CGPA Calculator
+Multi-semester SGPA aggregation
+Accurate CGPA computation across semesters
+Simple and structured academic performance tracking
+Scalable design for future semester additions
 🎯 Flexible Input System
 Grade-based input (O, E, A, B, C, D, U)
-Marks-based input (auto-converts to grade)
-Easy toggle between both modes
+Marks-based input with automatic grade conversion
+Easy toggle between input methods
 🧠 Smart Handling
 Optional subjects support (include/exclude dynamically)
-Real-time validation of marks (0–100)
-Error handling for incomplete inputs
-🎨 Modern UI
+Real-time input validation (0–100 marks range)
+Error handling for incomplete or missing inputs
+🎨 Modern UI/UX
 Dark GitHub-inspired theme
-Smooth animations and transitions
-Responsive design for mobile and desktop
-Interactive chips and pill-based selectors
+Smooth transitions and animations
+Fully responsive design (mobile + desktop)
+Interactive chips, pills, and cards
+Clean and distraction-free interface
 🧮 Formula Used
+SGPA Formula
 
 SGPA is calculated using:
 
 SGPA = (Σ (Credit × Grade Point)) / (Σ Credits)
-
-Where grade points are:
-
+CGPA Formula
+CGPA = (Σ SGPA of all semesters) / (Total number of semesters)
+📊 Grade Point System
 Grade	Points
-O	10
-E	9
-A	8
-B	7
-C	6
-D	5
-U	0
+O	 10
+E	 9
+A	 8
+B	 7
+C	 6
+D	 5
+U	 0
 🛠️ Tech Stack
 HTML5 – Structure
 CSS3 – Styling (Dark GitHub-inspired UI)
-JavaScript (Vanilla) – Logic & calculations
-Lucide Icons – UI icons (optional)
+JavaScript (Vanilla) – Core logic & calculations
+Lucide Icons – UI icons
 📁 Project Structure
-Silicon-Academic-Toolkit/
+Acadelytics/
 │
 ├── index.html        # Main UI
 ├── style.css         # Styling
-├── script.js         # Core logic (SGPA calculator)
+├── script.js         # Core logic (SGPA & CGPA calculator)
 ├── data.js           # Subject & semester data
-└── README.md         # Project documentation
-📱 Responsive Design
-Fully optimized for mobile devices
-Adaptive layout for tablets and desktops
-Touch-friendly interactive components
+└── README.md         # Documentation
 ⚡ How It Works
 Select your branch
 Choose your semester
 Enter grades or marks for each subject
-Include/exclude optional subjects if needed
-Click Calculate SGPA
-Get instant results with performance feedback
+Calculate SGPA instantly
+Repeat for multiple semesters
+Compute CGPA from saved SGPA values
+Get instant academic performance insights
 🎯 Future Improvements
-CGPA calculator with semester aggregation
-User login system (save progress)
-Backend integration for storing results
+Persistent CGPA history (local storage / backend)
+User login system for academic tracking
 Export marksheet as PDF
-Leaderboard / academic tracking dashboard
+Advanced analytics dashboard
+Semester comparison charts
+Mobile-first CGPA dashboard
+📱 Responsive Design
+Fully optimized for mobile devices
+Adaptive layout for tablets and desktops
+Touch-friendly interactive components
 🧑‍💻 Author
 
 Saswat
 B.Tech CSE – Silicon University
-Focused on DSA, Web Development, and Problem Solving.
+Focused on DSA, Web Development, and Problem Solving
 
 GitHub: https://github.com/FireStormy1
 LinkedIn: https://www.linkedin.com/in/saswatdixit/
@@ -97,4 +109,5 @@ This project is open-source and available under the MIT License.
 
 ⭐ Support
 
-If you like this project, consider giving it a ⭐ on GitHub — it motivates improvements and future updates.
+If you like this project, consider giving it a ⭐ on GitHub.
+It helps motivate further improvements and new features.
