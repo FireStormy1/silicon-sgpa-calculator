@@ -22,30 +22,36 @@ Get instant performance feedback
 The UI is inspired by modern developer tools like GitHub and LeetCode, focusing on clarity, speed, and usability.
 
 ✨ Features
+
 📊 SGPA Calculator
 Branch-wise subject loading
 Semester-wise curriculum support
 Automatic SGPA computation using credit-weighted formula
 Optional subject handling
+
 📈 CGPA Calculator
 Multi-semester SGPA aggregation
 Accurate CGPA computation across semesters
 Simple and structured academic performance tracking
 Scalable design for future semester additions
+
 🎯 Flexible Input System
 Grade-based input (O, E, A, B, C, D, U)
 Marks-based input with automatic grade conversion
 Easy toggle between input methods
+
 🧠 Smart Handling
 Optional subjects support (include/exclude dynamically)
 Real-time input validation (0–100 marks range)
 Error handling for incomplete or missing inputs
+
 🎨 Modern UI/UX
 Dark GitHub-inspired theme
 Smooth transitions and animations
 Fully responsive design (mobile + desktop)
 Interactive chips, pills, and cards
 Clean and distraction-free interface
+
 🧮 Formula Used
 SGPA Formula
 
@@ -54,6 +60,7 @@ SGPA is calculated using:
 SGPA = (Σ (Credit × Grade Point)) / (Σ Credits)
 CGPA Formula
 CGPA = (Σ SGPA of all semesters) / (Total number of semesters)
+
 📊 Grade Point System
 Grade	Points
 O	 10
@@ -63,11 +70,13 @@ B	 7
 C	 6
 D	 5
 U	 0
+
 🛠️ Tech Stack
 HTML5 – Structure
 CSS3 – Styling (Dark GitHub-inspired UI)
 JavaScript (Vanilla) – Core logic & calculations
 Lucide Icons – UI icons
+
 📁 Project Structure
 Acadelytics/
 │
@@ -76,6 +85,7 @@ Acadelytics/
 ├── script.js         # Core logic (SGPA & CGPA calculator)
 ├── data.js           # Subject & semester data
 └── README.md         # Documentation
+
 ⚡ How It Works
 Select your branch
 Choose your semester
@@ -84,6 +94,7 @@ Calculate SGPA instantly
 Repeat for multiple semesters
 Compute CGPA from saved SGPA values
 Get instant academic performance insights
+
 🎯 Future Improvements
 Persistent CGPA history (local storage / backend)
 User login system for academic tracking
@@ -91,10 +102,12 @@ Export marksheet as PDF
 Advanced analytics dashboard
 Semester comparison charts
 Mobile-first CGPA dashboard
+
 📱 Responsive Design
 Fully optimized for mobile devices
 Adaptive layout for tablets and desktops
 Touch-friendly interactive components
+
 🧑‍💻 Author
 
 Saswat
@@ -103,6 +116,7 @@ Focused on DSA, Web Development, and Problem Solving
 
 GitHub: https://github.com/FireStormy1
 LinkedIn: https://www.linkedin.com/in/saswatdixit/
+
 📄 License
 
 This project is open-source and available under the MIT License.
