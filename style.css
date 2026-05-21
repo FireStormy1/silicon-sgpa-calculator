@@ -23,16 +23,10 @@
     --green-hover:#2ea043;
 
     --danger:#f85149;
-
-    --card: var(--surface-2);
 }
 
 html{
     scroll-behavior:smooth;
-}
-
-body{
-    overflow-x:hidden;
 }
 
 body{
@@ -360,7 +354,8 @@ body{
     background:#161b22;
     border:1px solid #30363d;
     border-radius:12px;
-    padding:14px;
+    padding:14px 18 px;
+    min-width: 240px;
     color:#f0f6fc;
     font-size:14px;
     outline:none;
@@ -542,22 +537,35 @@ body{
 
 /* ---------- SUBJECT CONTROLS ---------- */
 
-.subject-controls{
-    width:100px;
-    max-width:360px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
+.subject-controls {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
 }
 
 /* ---------- METHOD / OPTIONAL PILLS ---------- */
 
 .method-pills,
-.optional-pills,
-.grade-pills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+.optional-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.grade-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.grade-pills {
+    display: flex;
+    flex-wrap: wrap;  
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .toggle-pill,
@@ -571,6 +579,13 @@ body{
     cursor:pointer;
     transition:.2s ease;
     font-family:'Inter',sans-serif;
+}
+
+.grade-pill,
+.toggle-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Hover effect */
@@ -610,10 +625,11 @@ body{
 
 .marks-input{
     width:100%;
+    min-width: 220px;   
     background:#0d1117;
     border:1px solid var(--border);
     border-radius:14px;
-    padding:14px 16px;
+    padding:14px 18px;  
     color:var(--text);
     outline:none;
     font-size:14px;
@@ -719,13 +735,24 @@ body{
 /* ---------- MOBILE ---------- */
 
 @media(max-width:768px){
+
     .subject-row{
         flex-direction:column;
-        gap:16px;
     }
 
     .subject-controls{
         width:100%;
-        max-width:100%;
+    }
+
+    .grade-pills,
+    .method-pills,
+    .optional-pills{
+        width:100%;
+    }
+
+    .grade-pill,
+    .toggle-pill{
+        flex:1;
+        text-align:center;
     }
 }
