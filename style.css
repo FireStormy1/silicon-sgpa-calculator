@@ -756,3 +756,67 @@ body{
         text-align:center;
     }
 }
+
+/* ---------- Grade Scale ---------- */
+.grade-scale-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.grade-item {
+    position: relative;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid #2ea043;
+    background: rgba(35, 134, 54, 0.12);
+    color: #e6edf3;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    z-index: 1;
+}
+
+.grade-item:hover {
+    transform: translateY(-3px);
+    background: #238636;
+    color: white;
+    z-index: 10;
+}
+
+.grade-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 120%;
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.grade-item::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 110%;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #161b22 transparent transparent transparent;
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+.grade-item:hover::after,
+.grade-item:hover::before {
+    opacity: 1;
+}
