@@ -63,19 +63,13 @@ CGPA = (Σ SGPA of all semesters) / (Total number of semesters)
 
 📊 Grade Point System
 Grade	Points
-O	 10
-
-E	 9
-
-A	 8
-
-B	 7
-
-C	 6
-
-D	 5
-
-U	 0
+O	- 10, 
+E	- 9, 
+A	- 8, 
+B	- 7, 
+C	- 6, 
+D	- 5, 
+U	- 0
 
 🛠️ Tech Stack
 HTML5 – Structure
