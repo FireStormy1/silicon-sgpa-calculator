@@ -23,10 +23,16 @@
     --green-hover:#2ea043;
 
     --danger:#f85149;
+
+    --card: var(--surface-2);
 }
 
 html{
     scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
 }
 
 body{
@@ -537,7 +543,8 @@ body{
 /* ---------- SUBJECT CONTROLS ---------- */
 
 .subject-controls{
-    width:360px;
+    width:100px;
+    max-width:360px;
     display:flex;
     flex-direction:column;
     gap:14px;
@@ -712,24 +719,13 @@ body{
 /* ---------- MOBILE ---------- */
 
 @media(max-width:768px){
-
     .subject-row{
         flex-direction:column;
+        gap:16px;
     }
 
     .subject-controls{
         width:100%;
-    }
-
-    .grade-pills,
-    .method-pills,
-    .optional-pills{
-        width:100%;
-    }
-
-    .grade-pill,
-    .toggle-pill{
-        flex:1;
-        text-align:center;
+        max-width:100%;
     }
 }
