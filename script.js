@@ -396,3 +396,16 @@ document.addEventListener("DOMContentLoaded", () => {
         subjectsContainer.innerHTML = "";
     }
 });
+
+document.querySelectorAll(".grade-item").forEach(item => {
+    item.addEventListener("click", (e) => {
+
+        // close other tooltips first
+        document.querySelectorAll(".grade-item").forEach(el => {
+            if (el !== item) el.classList.remove("show-tooltip");
+        });
+
+        // toggle current one
+        item.classList.toggle("show-tooltip");
+    });
+});
