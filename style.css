@@ -506,6 +506,36 @@ body {
 }
 
 /* ==========================================================
+    SUBJECT LAYOUT SPACING FIX
+========================================================== */
+
+.subject-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* space between grade/marks/optional blocks */
+}
+
+.method-pills {
+    margin-bottom: 10px; /* separates Grade / Marks switch */
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* space between grade pills and marks input */
+}
+
+.optional-pills {
+    margin-bottom: 10px; /* separates Taken / Not Taken toggle */
+}
+
+/* optional: better card breathing space */
+.subject-row {
+    padding: 14px;
+    border-radius: 12px;
+}
+
+/* ==========================================================
     BUTTONS
 ========================================================== */
 
