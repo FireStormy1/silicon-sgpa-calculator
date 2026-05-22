@@ -6,6 +6,7 @@ It helps calculate SGPA & CGPA, track semester performance, and manage academic 
 🚀 Live Demo
 
 👉 https://firestormy1.github.io/Acadelytics/
+👉 https://acadelytics.vercel.app/
 
 📌 About the Project
 
