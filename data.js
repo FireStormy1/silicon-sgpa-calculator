@@ -42,6 +42,12 @@ const semesterData = {
             },
 
             {
+                name: "Constitution of India & Professional Ethics / Environmental Science & Engineering",
+                credit: 0,
+                type: "theory"
+            },
+
+            {
                 name: "Basic Electronics Engineering Lab / Basic Electrical Engineering Lab",
                 credit: 1,
                 type: "practical"
@@ -104,6 +110,12 @@ const semesterData = {
             {
                 name: "Data Structures & Algorithms",
                 credit: 3,
+                type: "theory"
+            },
+
+            {
+                name: "Constitution of India & Professional Ethics / Environmental Science & Engineering",
+                credit: 0,
                 type: "theory"
             },
 
@@ -448,6 +460,12 @@ const semesterData = {
             {
                 name: "Technical & Research Writing",
                 credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Yoga / NSS / NCC / PES / CPA",
+                credit: 0,
                 type: "practical"
             }
         ]
@@ -887,6 +905,12 @@ const semesterData = {
                 name: "Technical & Research Writing",
                 credit: 1,
                 type: "practical"
+            },
+
+            {
+                name: "Yoga / NSS / NCC / PES / CPA",
+                credit: 0,
+                type: "practical"
             }
         ]
     },
@@ -1319,6 +1343,12 @@ const semesterData = {
             {
                 name: "Technical & Research Writing",
                 credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Yoga / NSS / NCC / PES / CPA",
+                credit: 0,
                 type: "practical"
             }
         ]
@@ -1753,6 +1783,12 @@ const semesterData = {
                 name: "Technical & Research Writing",
                 credit: 1,
                 type: "practical"
+            },
+
+            {
+                name: "Yoga / NSS / NCC / PES / CPA",
+                credit: 0,
+                type: "practical"
             }
         ]
     },
@@ -2184,6 +2220,12 @@ const semesterData = {
             {
                 name: "Technical & Research Writing",
                 credit: 1,
+                type: "practical"
+            },
+
+            {
+                name: "Yoga / NSS / NCC / PES / CPA",
+                credit: 0,
                 type: "practical"
             }
         ]
