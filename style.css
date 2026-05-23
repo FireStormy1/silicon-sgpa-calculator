@@ -505,6 +505,31 @@ body {
         0 0 0 4px rgba(46, 160, 67, 0.15);
 }
 
+.cgpa-input{
+    width:100%;
+
+    padding:14px 18px;
+
+    border:1px solid var(--border);
+    border-radius:14px;
+
+    background:#0d1117;
+    color:var(--text);
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:0.2s ease;
+}
+
+.cgpa-input:focus{
+    border-color:var(--green);
+
+    box-shadow:
+        0 0 0 4px rgba(46,160,67,0.15);
+}
+
 /* ==========================================================
     SUBJECT LAYOUT SPACING FIX
 ========================================================== */
