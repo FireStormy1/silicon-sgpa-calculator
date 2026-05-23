@@ -1341,7 +1341,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "input"
                 );
 
-            input.type = "number";
+            input.type = "text";
+            input.inputMode = "decimal";
             input.min = "0";
             input.max = "10";
             input.step = "0.01";
@@ -1358,28 +1359,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
             input.addEventListener("input", function () {
 
-                this.value =
-                    this.value.replace(/[^0-9.]/g, "");
+                let value = this.value;
 
-                const parts =
-                    this.value.split(".");
+                // allow only digits and one decimal
+                value = value.replace(/[^0-9.]/g, "");
 
-                if (parts.length > 2) {
-                    this.value =
-                        parts[0] + "." +
-                        parts.slice(1).join("");
+                // keep only first decimal point
+                const firstDot = value.indexOf(".");
+                if (firstDot !== -1) {
+                    value =
+                        value.slice(0, firstDot + 1) +
+                        value
+                            .slice(firstDot + 1)
+                            .replace(/\./g, "");
                 }
 
-                let value =
-                    Number(this.value);
-
-                if (value > 10) {
-                    this.value = "10";
+                // limit to 2 decimal places
+                const parts = value.split(".");
+                if (parts[1]) {
+                    parts[1] = parts[1].slice(0, 2);
+                    value = parts.join(".");
                 }
 
-                if (value < 0) {
-                    this.value = "0";
+                // limit max value to 10
+                const num = parseFloat(value);
+                if (!isNaN(num) && num > 10) {
+                    value = "10";
                 }
+
+                this.value = value;
+
                 saveState();
             });
         }
@@ -1477,9 +1486,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Focus on consistency.";
             }
 
-            cgpaResult.classList.remove(
-                "hidden"
-            );
+            cgpaResult.classList.remove("hidden");
+
+            setTimeout(() => {
+                cgpaResult.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }, 100);
         });
 
         /* ==========================================
