@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedBranch = chip.dataset.branch;
 
             loadSemesterData();
+            saveState();
         });
     });
 
@@ -139,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedSemester = chip.dataset.semester;
 
             loadSemesterData();
+            saveState();
         });
     });
 
@@ -326,7 +328,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return `
             <input
-                type="number"
+                type="text"
+                inputmode="numeric"
                 min="0"
                 max="100"
                 step="1"
@@ -353,7 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 input.oninput = function () {
 
-                    // allow only numbers
+                    // allow only whole numbers
                     this.value =
                         this.value.replace(/[^0-9]/g, "");
 
@@ -366,6 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (value < 0) {
                         this.value = 0;
                     }
+                    saveState();
                 };
             });
 
@@ -418,6 +422,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             "hidden"
                         );
                     }
+
+                    saveState();
                 };
             });
 
@@ -458,11 +464,27 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
                     this.classList.add("active");
+                    
+                    const gradePills =
+                        container.querySelectorAll(
+                            ".grade-pill"
+                        );
+
+                    const marksInput =
+                        container.querySelector(
+                            ".marks-input"
+                        );
 
                     if (
                         this.dataset.method ===
                         "grade"
                     ) {
+
+                        // clear marks input
+                        if (marksInput) {
+                            marksInput.value = "";
+                        }
+
                         gradeArea.classList.remove(
                             "hidden"
                         );
@@ -470,7 +492,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         marksArea.classList.add(
                             "hidden"
                         );
+
                     } else {
+
+                        // clear selected grade
+                        gradePills.forEach(pill =>
+                            pill.classList.remove(
+                                "active"
+                            )
+                        );
 
                         gradeArea.classList.add(
                             "hidden"
@@ -480,6 +510,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             "hidden"
                         );
                     }
+
+                    saveState();
                 };
             });
 
@@ -504,6 +536,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
                     this.classList.add("active");
+                    saveState();
                 };
             });
     }
@@ -604,6 +637,15 @@ document.addEventListener("DOMContentLoaded", () => {
             creditSum += credit;
         }
 
+        if (creditSum === 0) {
+
+            showError(
+                "Please select at least one subject."
+            );
+
+            return;
+        }
+
         hideError();
 
         const sgpa =
@@ -651,6 +693,11 @@ document.addEventListener("DOMContentLoaded", () => {
         resultCard.classList.remove(
             "hidden"
         );
+
+        resultCard.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
     }
 
     /* ==========================================================
@@ -742,11 +789,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 ) {
                     return;
                 }
-                
+
                 const name =
                     row.querySelector(
                         ".subject-info h4"
-                    )?.innerText ||
+                    )?.textContent ||
                     "Subject";
 
                 const credit =
@@ -786,6 +833,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     grade
                 ]);
             });
+
+            if (
+                tableData.some(row => row[2] === "NA")
+            ) {
+                alert(
+                    "Please complete all subject inputs."
+                );
+                return;
+            }
 
             /* ==========================================
                 TABLE
@@ -845,8 +901,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
     resetBtn?.addEventListener(
         "click",
-        () => location.reload()
+        resetSGPA
     );
+
+    function resetSGPA() {
+
+        localStorage.removeItem(
+            "acadelyticsState"
+        );
+
+        // reset selected state
+        selectedBranch = null;
+        selectedSemester = null;
+
+        // remove active chips
+        branchChips.forEach(chip =>
+            chip.classList.remove("active")
+        );
+
+        semesterChips.forEach(chip =>
+            chip.classList.remove("active")
+        );
+
+        // clear rendered subjects
+        subjectsContainer.innerHTML = "";
+
+        // hide visible sections
+        semesterInfo.classList.add(
+            "hidden"
+        );
+
+        subjectsCard.classList.add(
+            "hidden"
+        );
+
+        buttonsSection.classList.add(
+            "hidden"
+        );
+
+        resultCard.classList.add(
+            "hidden"
+        );
+
+        comingSoon.classList.add(
+            "hidden"
+        );
+
+        // clear result
+        sgpaValue.textContent = "0.00";
+
+        motivationTitle.textContent = "";
+
+        motivationMessage.textContent =
+            "";
+
+        // hide errors
+        hideError();
+
+        // clear semester info
+        semesterTitle.textContent = "";
+
+        subjectCount.textContent = "";
+
+        totalCredits.textContent = "";
+    }
 
     /* ==========================================================
         ERROR HANDLING
@@ -864,6 +982,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function hideError() {
 
+        errorMessage.textContent = "";
+
         errorMessage.classList.add(
             "hidden"
         );
@@ -874,6 +994,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================================== */
 
     function hideEverything() {
+
+        hideError();
 
         comingSoon.classList.add(
             "hidden"
@@ -897,8 +1019,217 @@ document.addEventListener("DOMContentLoaded", () => {
 
         subjectsContainer.innerHTML =
             "";
+
+        semesterTitle.textContent =
+            "";
+
+        subjectCount.textContent =
+            "";
+
+        totalCredits.textContent =
+            "";
+    }
+    /* ==========================================================
+        LOCAL STORAGE
+    ========================================================== */
+
+    function saveState() {
+
+        const state = {
+            selectedBranch,
+            selectedSemester,
+            subjects: [],
+            cgpa: {
+                selectedSemCount,
+                values: []
+            }
+        };
+
+        document
+            .querySelectorAll(".subject-row")
+            .forEach(row => {
+
+                const optional =
+                    row.querySelector(
+                        ".optional-toggle.active"
+                    )?.dataset.value || null;
+
+                const method =
+                    row.querySelector(
+                        ".method-btn.active"
+                    )?.dataset.method || null;
+
+                const grade =
+                    row.querySelector(
+                        ".grade-pill.active"
+                    )?.dataset.grade || "";
+
+                const marks =
+                    row.querySelector(
+                        ".marks-input"
+                    )?.value || "";
+
+                state.subjects.push({
+                    optional,
+                    method,
+                    grade,
+                    marks
+                });
+            });
+
+        document
+            .querySelectorAll(
+                "#cgpa-inputs input"
+            )
+            .forEach(input => {
+                state.cgpa.values.push(
+                    input.value
+                );
+            });
+
+        localStorage.setItem(
+            "acadelyticsState",
+            JSON.stringify(state)
+        );
     }
 
+    function loadState() {
+
+        const saved =
+            localStorage.getItem(
+                "acadelyticsState"
+            );
+
+        if (!saved) return;
+
+        const state =
+            JSON.parse(saved);
+
+        selectedBranch =
+            state.selectedBranch;
+
+        selectedSemester =
+            state.selectedSemester;
+
+        if (
+            selectedBranch &&
+            selectedSemester
+        ) {
+
+            document
+                .querySelector(
+                    `[data-branch="${selectedBranch}"]`
+                )
+                ?.classList.add("active");
+
+            document
+                .querySelector(
+                    `[data-semester="${selectedSemester}"]`
+                )
+                ?.classList.add("active");
+
+            loadSemesterData();
+
+            setTimeout(() => {
+
+                const rows =
+                    document.querySelectorAll(
+                        ".subject-row"
+                    );
+
+                rows.forEach(
+                    (row, index) => {
+
+                        const savedSubject =
+                            state.subjects[index];
+
+                        if (
+                            !savedSubject
+                        ) return;
+
+                        // optional
+                        if (
+                            savedSubject.optional &&
+                            savedSubject.optional !== "no"
+                        ) {
+                            row.querySelector(
+                                `.optional-toggle[data-value="${savedSubject.optional}"]`
+                            )?.click();
+                        }
+
+                        // method
+                        if (savedSubject.method) {
+                            row.querySelector(
+                                `.method-btn[data-method="${savedSubject.method}"]`
+                            )?.click();
+                        }
+
+                        // restore based on method
+                        if (savedSubject.method === "grade") {
+
+                            if (savedSubject.grade) {
+                                row.querySelector(
+                                    `.grade-pill[data-grade="${savedSubject.grade}"]`
+                                )?.click();
+                            }
+
+                        } else if (
+                            savedSubject.method === "marks"
+                        ) {
+
+                            const input =
+                                row.querySelector(".marks-input");
+
+                            if (input) {
+                                input.value =
+                                    savedSubject.marks;
+
+                                input.dispatchEvent(
+                                    new Event("input")
+                                );
+                            }
+                        }
+                    }
+                );
+            }, 100);
+        }
+
+        // restore cgpa
+        if (
+            state.cgpa
+                ?.selectedSemCount
+        ) {
+
+            selectedSemCount =
+                state.cgpa
+                    .selectedSemCount;
+
+            document
+                .querySelector(
+                    `.cgpa-count[data-count="${selectedSemCount}"]`
+                )
+                ?.click();
+
+            setTimeout(() => {
+
+                const inputs =
+                    cgpaInputs.querySelectorAll(
+                        "input"
+                    );
+
+                inputs.forEach(
+                    (input, index) => {
+
+                        input.value =
+                            state.cgpa
+                                .values[
+                                index
+                            ] || "";
+                    }
+                );
+            }, 100);
+        }
+    }
     /* ==========================================================
         CGPA MODULE
     ========================================================== */
@@ -986,6 +1317,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderCgpaInputs(
                     selectedSemCount
                 );
+                saveState();
             }
         );
     });
@@ -1018,11 +1350,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 `Semester ${i} SGPA`;
 
             input.className =
-                "marks-input";
+                "cgpa-input";
 
             cgpaInputs.appendChild(
                 input
             );
+
+            input.addEventListener("input", function () {
+
+                this.value =
+                    this.value.replace(/[^0-9.]/g, "");
+
+                const parts =
+                    this.value.split(".");
+
+                if (parts.length > 2) {
+                    this.value =
+                        parts[0] + "." +
+                        parts.slice(1).join("");
+                }
+
+                let value =
+                    Number(this.value);
+
+                if (value > 10) {
+                    this.value = "10";
+                }
+
+                if (value < 0) {
+                    this.value = "0";
+                }
+                saveState();
+            });
         }
     }
 
@@ -1034,23 +1393,30 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         () => {
 
-            const inputs =
-                cgpaInputs.querySelectorAll(
-                    "input"
-                );
+                const inputs =
+                    cgpaInputs.querySelectorAll(
+                        "input"
+                    );
 
-            let sum = 0;
+                let sum = 0;
 
-            let count =
-                inputs.length;
+                let count =
+                    inputs.length;
 
-            for (let input of inputs) {
+                if (inputs.length === 0) {
+                    alert(
+                        "Please select semesters."
+                    );
+                    return;
+                }
+
+                for (let input of inputs) {
 
                 const value =
                     Number(input.value);
 
                 if (
-                    !input.value ||
+                    input.value.trim() === "" ||
                     value < 0 ||
                     value > 10
                 ) {
@@ -1153,6 +1519,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "";
 
                 selectedSemCount = 0;
+
+                saveState();
             }
         );
         
@@ -1189,8 +1557,40 @@ document.addEventListener("DOMContentLoaded", () => {
                     "input"
                 );
 
+            if (inputs.length === 0) {
+                alert(
+                    "Please select semesters."
+                );
+                return;
+            }
+
+            for (let input of inputs) {
+
+                const value =
+                    Number(input.value);
+
+                if (
+                    input.value.trim() === "" ||
+                    value < 0 ||
+                    value > 10
+                ) {
+
+                    alert(
+                        "Please complete all semester SGPA inputs."
+                    );
+
+                    return;
+                }
+            }
+
+            let sum = 0;
+
+            for (let input of inputs) {
+                sum += Number(input.value);
+            }
+
             const cgpa =
-                cgpaValue.textContent;
+                (sum / inputs.length).toFixed(2);
 
             /* ==================================
                 HEADER
@@ -1314,6 +1714,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             );
         });
+        loadState();
     });
 
 
